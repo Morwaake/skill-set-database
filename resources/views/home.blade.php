@@ -15,7 +15,7 @@
                     @endif
 
                     You are logged in!
-                    <a class="btn btn-secondary" href="{{route('addDetails')}} "role="button">ADD PROFILE DETAILS</a>
+                    <a class="btn btn-secondary" href="#"role="button">ADD PROFILE DETAILS</a>
                     <a class="btn btn-secondary" href="#" role="button">ADD SKILL</a>
                 </div>
             </div>

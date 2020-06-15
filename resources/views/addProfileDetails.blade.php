@@ -12,53 +12,47 @@
           <tbody>
              <tr>
                 <td colspan="2">
-                   <form class="well form-horizontal" method="post" action="{{route('addProfile')}}" >
+                   <form class="well form-horizontal" method="post" action="#" >
                    @csrf
                       <fieldset>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">First Name</label>
+                            <label class="col-md-4 control-label">Business Name *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="firstname" placeholder="first Name" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">Last Name</label>
+                            <label class="col-md-4 control-label">Contact Number *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="lastName" placeholder="last Name" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">Address</label>
+                            <label class="col-md-4 control-label">Address *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="address" placeholder="Address" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">City</label>
+                            <label class="col-md-4 control-label">Location *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="city" name="city" placeholder="City" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
+                            <label class="col-md-4 control-label">Email *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
-                            <label class="col-md-4 control-label">Phone Number</label>
+                            <label class="col-md-4 control-label">About The Business *</label>
                             <div class="col-md-6 inputGroupContainer">
                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text"></div>
                             </div>
                          </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Date of Birth</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="phoneNumber" name="dob" placeholder="Phone Number" class="form-control" required="true" value="" type="date"></div>
-                            </div>
-                         </div>
                          <div class="text-center">
-                         <button type="submit" class="btn btn-secondary">Add Details</button>
+                         
                          <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
                          </div>
                       </fieldset>

@@ -1,72 +1,54 @@
 @extends('layouts.app')
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-@section('content')
-<div>
-   <h1><p class="text-center">ADD PROFILE DETAILS</p></h1>
-</div>
-<div class="container">
 
-       <table class="table table-striped">
-          <tbody>
-             <tr>
-                <td colspan="2">
-                   <form class="well form-horizontal" method="post" action="{{route('addDetails')}}" >
-                   @csrf
-                      <fieldset>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">First Name</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="firstname" placeholder="first Name" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Last Name</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="lastName" placeholder="last Name" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Address</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="address" placeholder="Address" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">City</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="city" name="city" placeholder="City" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Phone Number</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text"></div>
-                            </div>
-                         </div>
-                         <div class="form-group">
-                            <label class="col-md-4 control-label">Date of Birth</label>
-                            <div class="col-md-6 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="phoneNumber" name="dob" placeholder="Phone Number" class="form-control" required="true" value="" type="date"></div>
-                            </div>
-                         </div>
-                         <div class="text-center">
-                         <button type="submit" class="btn btn-secondary">Add Details</button>
-                         <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
-                         </div>
-                      </fieldset>
-                   </form>
-                </td>
-             </tr>
-          </tbody>
-       </table>
+
+@section('content')
+<div class="container shadow-sm p-3 mb-5 rounded bg-light">
+    <div class="p-3 mb-2 bg-secondary text-white text-center"><h4>ADD PROFILE DETAILS</h4></div>
+    <form action="post" action ="{{route('addProfileDetails')}}">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="inputEmail4">First Name *</label>
+        <input type="text" name ="firstname"class="form-control" id="inputEmail4">
+        </div>
+        <div class="form-group col-md-6">
+        <label for="inputPassword4">Last Name *</label>
+        <input type="email" name ="lastName" class="form-control" id="inputPassword4">
+        </div>
     </div>
+    <div class="form-group">
+        <label for="inputAddress">Address *</label>
+        <input type="text" name ="address" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Date of Birth</label>
+        <input type="date" name ="dob"class="form-control" id="inputAddress2" >
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Phone</label>
+        <input type="text" name ="location"class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <select id="inputState" name ="city" class="form-control">
+        <option selected>Choose...</option>
+        <option value="Gaborone">Gaborone</option>
+        <option value="Maun">Maun</option>
+        <option value="Francistown">Francistown</option>
+        <option value="Palapye">Palapye</option>
+        <option value="Gantsi">Gantsi</option>
+      </select>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="inputState">Email</label>
+        <input type="text" name ="email"class="form-control" id="inputZip "placeholder="number">
+        </div>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary">Add Details</button>
+    <a class="btn btn-danger btn-sm pull-right" href="#">Back</a>
+    </div>
+    </form>
+</div>
 
 @endsection

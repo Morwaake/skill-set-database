@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header bg-secondary text-white text-center"><h5>{{ __('Register') }}</h5></div>
 
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -18,6 +18,30 @@
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="role" id="role" value="1" >
+                                <label class="form-check-label" for="role">
+                                    Adept
+                                </label>
+                                <input class="form-check-input ml-4" type="radio" name="role" id="role" value="2">
+                                <label class="form-check-label ml-5" for="role">
+                                    Stakeholder
+                                </label>
+                                </div>
+
+                                @error('role')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

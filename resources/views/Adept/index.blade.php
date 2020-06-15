@@ -25,31 +25,31 @@
       <section class='statis text-center'>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3">
-              <div class="box bg-primary">
-                  <h3>5,154</h3>
-                  <p class="lead"><a href="{{route('addAdeptDetailsForm')}}">ADD PROFILE</a></p>
+              <div class="col-md-3"><a href="{{route('addAdeptDetailsForm')}}">
+              <div class="box bg-danger">
+                 
+                  <p class="lead">ADD PROFILE</p>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3"></a>
                 <div class="box bg-info">
 
-                  <h3>245</h3>
+                  
                   <p class="lead">VIEW PROFILE</p>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3"><a href="{{route('addSkill')}}">
                 <div class="box bg-danger">
                  
-                  <h3>5,154</h3>
-                  <p class="lead">SKILLS ANALYSIS</p>
+                  
+                  <p class="lead">ADD SKILL</p>
                 </div>
-              </div>
+              </div></a>
               <div class="col-md-3">
                 <div class="box bg-success">
                   
-                  <h3>5,154</h3></i>
-                  <p class="lead">Transactions</p>
+                  
+                  <p class="lead">SKILLS ANALYSIS</p>
                 </div>
               </div>
             </div>

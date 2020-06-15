@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Open+Sans+Condensed:300|Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Economica|Patrick+Hand|Saira+Semi+Condensed&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+/*#app .navbar{
+  background-color: rgb(56, 158, 253) !important;
+}
+#app .nav-bar .nav-item{
+  color: white !important;
+}*/
+
+.hero{
+    height: 80vh;
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.hero h1{
+  font-size: 80px;
+  color: white;
+  font-family: ubuntu condensed;
+}
+.hero h5, h3{
+  color: white;
+  font-family: ubuntu condensed;
+}
+.custom-button{
+  background: #24CDDB;
+  border: transparent;
+}
+.logosearch{
+  color: #24CDDB;
+}
+.homesearch{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 20px;
+  margin: 50px;
+  overflow: hidden;
+}
+.homesearch>div{
+  margin: 20px;
+  grid-column: span 1;
+  border-radius: 5px;
+  position: relative;
+}
+.homesearch>div:hover{
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out all; 
+}
+.homesearch a span { 
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+.homesearch img{
+  padding: 10px;
+}
+.homesearch p{
+  padding: 30px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: ubuntu condensed;
+}
+.homesearch button{
+  display: block;
+  width: 100%;
+  margin: 10px;
+}
+.hero input{
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-family: ubuntu condensed;
+}
+.hero select{
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-family: ubuntu condensed;
+}
+.hero button{
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 30px;
+  color: white;
+  font-family: ubuntu condensed;
+  box-shadow: none;
+  border-color: transparent;
+}
+.hero button:focus{
+  outline: none
+}
+.properties-box{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 30px;
+  grid-gap: 10px;
+  margin: 10px;
+  font-family: ubuntu condensed;
+}
+.crd {
+  box-shadow: 0 16px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0);
+  background-color: #FDF1F1;
+}
+.properties-box img{
+  height: 280px;
+  padding: 30px;
+  border-radius: 50px;
+}
+#property-heading{
+  font-family: ubuntu condensed;
+}
+#viewproperties>div{
+  background: #ED4264;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFEDBC, #ED4264);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFEDBC, #ED4264); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.singleproperty{
+  font-family: ubuntu condensed;
+  background-color: #ffffff; 
+  margin: 20px 100px 20px 100px;
+  border: 3px solid rgb(4, 156, 202);
+  border-radius: 10px;
+}
+.singleproperty img{
+  margin: 0 auto;
+  height: 250px;
+}
+.carousel-item img{
+  height: 350px;
+  width: 100%;
+}
+.singleproperty strong{
+  margin: 5px;
+}
+.discover{
+  background-image: url('../img/discover.jpeg');
+}
+#search-form{
+  text-align: center;
+  color: #fff; 
+}
+#search-form input{
+  font-family: ubuntu condensed;
+}
+input{
+  text-align: center;
+  text-transform: uppercase;
+}
+#inner-form1{
+  float: left;
+  margin-left: 35%;
+}
+#inner-form2{
+  float: right;
+  margin-right: 35%;
+}
+footer{
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background: #24CDDB;
+  font-family: ubuntu condensed;
+}
+@media (max-width:768px){
+  #course-grid{
+    display: block;
+  }
+  #course-grid>div{
+    margin-bottom: 20px;
+  }
+  .hero h1{
+    font-size: 40px;
+  }
+  .properties-box{
+    display: block;
+  }
+  #inner-form1{
+    display: inline-block;
+  }
+  #inner-form2{
+    float: right;
+    margin-right: 35%;
+  }
+}
+@media (max-width: 775px){
+  .homesearch{
+      display: block;
+  }
+  .homesearch img{
+      height: auto;
+      width: auto;
+      padding: 10px;
+  }
+  .homesearch p{
+      font-size: 20px;
+  }
+}
+
+
+[data-scroll] {
+  transition: all 2s;
+}
+[data-scroll="in"] {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-scroll="out"] {
+  opacity: 0;
+  transform: translateX(50px);
+}

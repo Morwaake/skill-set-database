@@ -1,0 +1,18 @@
+.form {
+    width: 45%;
+    position: absolute;
+    top: 10;
+    right:0;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-bottom:10px;
+    padding-left: 10px;
+    background-color: #fff;
+  }
+  button #moveright{
+    float: right;
+  }
+  /*.form.stick {
+    position: fixed;
+  }*/

@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Open+Sans+Condensed:300|Ubuntu+Condensed&display=swap');
+
+
+  #form-class{
+    font-family: Ubuntu Condensed;
+    overflow-y: hidden;
+  }
+
+  #images{
+    margin: 0 auto;
+    width: 600px;
+    height: 200px;
+    border-radius: 20px;
+  }

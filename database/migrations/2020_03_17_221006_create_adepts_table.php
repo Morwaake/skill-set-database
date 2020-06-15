@@ -22,6 +22,7 @@ class CreateAdeptsTable extends Migration
             $table->string('city');
             $table->string('email');
             $table->date('date_of_birth');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

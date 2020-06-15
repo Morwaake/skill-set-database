@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Adept extends Model
+class Image extends Model
 {
     //
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo('App\User');
     }
 }

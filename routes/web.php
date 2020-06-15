@@ -23,9 +23,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /**add adept profile details */
 Route::get('/add_Profile_Details', 'AdeptController@addDetailsForm')->name('addAdeptDetailsForm');
-Route::any('/add_Profile', 'AdeptController@addDetails')->name('addDetails');
+Route::any('/add_Profile', 'AdeptController@addDetails')->name('addProfileDetails');
 
 
 /** display for different roles */
 Route::get('/adept', 'AdeptController@index')->name('adept')->middleware('adept');
 Route::get('/stakeholder', 'StakeholderController@index')->name('stakeholder')->middleware('stakeholder');
+
+/**add skill */
+Route::get('/addSkills', 'SkillController@addSkill')->name('addSkill');
+Route::any('/addSkillss', 'SkillController@addSkills')->name('addSkills');
+
+/**view the display of searched */
+Route::any('/searchResults', 'StakeholderController@searchBySkill')->name('results')->middleware('stakeholder');
+Route::get('/searchResult', 'StakeholderController@viewResults')->name('viewResult');
+
+/**add stakeholder add profile */
+Route::get('/addProfile', 'StakeholderController@viewDetails')->name('profile')->middleware('stakeholder');
+Route::any('/add_Profile', 'StakeholderController@addDetails')->name('stakeholderDetails')->middleware('stakeholder');
+
+/**do to dashboard button */
+Route::get('/used_logged_in', 'StakeholderController@redirectTo')->name('goToDashboard');
