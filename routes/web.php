@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /**add adept profile details */
 Route::get('/add_Profile_Details', 'AdeptController@addDetailsForm')->name('addAdeptDetailsForm');
-Route::any('/add_Profile', 'AdeptController@addDetails')->name('addProfileDetails');
+Route::post('/addProfiles', 'AdeptController@addDetails')->name('addProfileDetails');
 
 
 /** display for different roles */

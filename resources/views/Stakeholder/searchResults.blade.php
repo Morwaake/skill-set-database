@@ -20,9 +20,9 @@
                         @foreach($details as $searchResults)
                             <tr>
                             <th scope="row">{{ $searchResults->id }}</th>
-                            <td>{{ $searchResults->fisrt_name }}</td>
+                            <td>{{ $searchResults->first_name }}</td>
                             <td>{{ $searchResults->last_name }}</td>
-                            <td>{{ $owner1->email }}</td>
+                            <td>{{ $searchResults->email }}</td>
                             <td>{{ $searchResults->Phone }}</td>
                             <td>{{ $searchResults->address }}</td>
                             <td><a href="#" class="btn btn-primary" >View Profile Details</a></td>

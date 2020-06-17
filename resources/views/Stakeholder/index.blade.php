@@ -17,10 +17,20 @@
             <input class="form-control form-control-dark w-100" type="text" name="name"placeholder="enter skill name " aria-label="search">
             </div>
             <div class="col-md-2">
-            <input class="form-control form-control-dark w-100" type="text" name="category" placeholder="enter skill category" aria-label="search">
+            <select id="select" name="category" class="custom-select">
+              <option value="">skill category</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Programming">Programming</option>
+              <option value="Database">Database</option>
+              <option value="Data Analysis">Data Analysis</option>
+            </select>
             </div>
             <div class="col-md-2">
-            <input class="form-control form-control-dark w-100" type="text" name="level"placeholder="enter skill level" aria-label="search">
+            <select id="select" required name="level" class="custom-select">
+              <option value="">skill level..</option>
+              <option value="beginner">Beginner</option>
+              <option value="professional">Professional</option>
+            </select>
             </div>
             <div >
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -34,7 +44,7 @@
       <section class='statis text-center'>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3"><a href="{{route('addAdeptDetailsForm')}}">
+              <div class="col-md-3"><a href="{{route('profile')}}">
               <div class="box bg-danger">
                  
                   <p class="lead">ADD PROFILE</p>

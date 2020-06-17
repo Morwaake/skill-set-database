@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Adept;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdeptController extends Controller
 {
@@ -22,7 +23,8 @@ class AdeptController extends Controller
     }
     public function addDetails(Request $request)
      {
-        $adept = new Adept;
+        
+        $adept = new Adept();
         /* Store Adept Details*/
         $adept->user_id =Auth::id();
         $adept->first_name = $request->firstname;
@@ -33,7 +35,6 @@ class AdeptController extends Controller
         $adept->date_of_birth = $request->dob;
         $adept->email = $request->email;
         $adept->save();
-        
-        return view("Adept.index")->with('message','details successfully added !!!!');
+        return view("Adept.index");
      }
 }

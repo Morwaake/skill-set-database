@@ -76,7 +76,7 @@ class StakeholderController extends Controller
                         ->where('name','LIKE','%'.$name.'%')
                         ->select('skills.id', 'skills.name', 'skills.category','skills.work_experience_on_skill','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
-                        dd($searchResults);
+                    
     
                     if(count($searchResults) > 0)
                     

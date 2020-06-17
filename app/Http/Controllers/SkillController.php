@@ -20,21 +20,7 @@ class SkillController extends Controller
         $skill->level = $request->level;
     
         $skill->save();
-        dd($request->hasFile('link'));
-        
-        if ($request->hasFile('link')) {
-            $filenameext = $request->file('link')->getClientOriginalName();
-            $filename = pathinfo($filenameext, PATHINFO_FILENAME);
-            $extension = $request->file('link')->getClientOriginalExtension();
-            $filenametostore = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('link')->storeAs('public/upload', $filenametostore);
-            $image = new Image;
-            $image->user_id = Auth::id();
-            $image->link = $filenametostore;
-            $image->save();
-        } else {
-            return "no file selected";
-        }
+ 
         
 
         return view('Adept.index')->with('success', 'Skill added');;

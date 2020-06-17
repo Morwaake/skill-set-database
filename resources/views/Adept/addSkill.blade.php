@@ -60,12 +60,12 @@
                                   </select>
                                 </div>
                               </div>  
-                              <div class="form-group row">
+                              <!--<div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
                                   <input type="file" id="proof" name="link" required class="form-control here" >
                                 </div>
-                              </div>                           
+                              </div>-->                         
                               <div class="form-group row">
                                 <div class="button-4 col-8">
                                 <button type="submit" class="btn btn-secondary">Add Skill</button>
