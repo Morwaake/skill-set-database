@@ -36,22 +36,6 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="select" class="col-2 col-form-label">Work Experince on Skill *</label> 
-                                <div class="col-8">
-                                  <select id="select" name="experience" required class="custom-select">
-                                    <option value="No experience">No experience</option>
-                                    <option value="Some Experience">Some Experience</option>
-                                    <option value="Experienced">Experienced</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="lastname" class="col-2 col-form-label">Place Where Skill Obtained *</label> 
-                                <div class="col-8">
-                                  <input id="obtain" name="obtained" required placeholder="Name of School or Bootcamp" class="form-control here" type="text">
-                                </div>
-                              </div>
-                              <div class="form-group row">
                                 <label for="select" class="col-2 col-form-label">Level *</label> 
                                 <div class="col-8">
                                   <select id="select" required name="level" class="custom-select">
@@ -59,7 +43,20 @@
                                     <option value="professional">Professional</option>
                                   </select>
                                 </div>
-                              </div>  
+                              </div> 
+                              <input id="file-upload" type="file" name="fileUpload" accept="image/*" onchange="readURL(this);">
+                              <label for="file-upload" id="file-drag">
+                                  <img id="file-image" src="#" alt="Preview" class="hidden">
+                                  <div id="start" >
+                                      <i class="fa fa-download" aria-hidden="true"></i>
+                                      <div>Select a file or drag here</div>
+                                      <div id="notimage" class="hidden">Please select an image</div>
+                                      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                                      <br>
+                                      <span class="text-danger">{{ $errors->first('fileUpload') }}</span>
+                                  </div>
+                            
+                              </label> 
                               <!--<div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
@@ -80,4 +77,21 @@
 		</div>
 	</div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+   function readURL(input, id) {
+     id = id || '#file-image';
+     if (input.files &amp;&amp; input.files[0]) {
+         var reader = new FileReader();
+ 
+         reader.onload = function (e) {
+             $(id).attr('src', e.target.result);
+         };
+ 
+         reader.readAsDataURL(input.files[0]);
+         $('#file-image').removeClass('hidden');
+         $('#start').hide();
+     }
+  }
+ </script>
 @endsection

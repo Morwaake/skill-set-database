@@ -40,7 +40,7 @@ Route::get('/searchResult', 'StakeholderController@viewResults')->name('viewResu
 
 /**add stakeholder add profile */
 Route::get('/addProfile', 'StakeholderController@viewDetails')->name('profile')->middleware('stakeholder');
-Route::any('/add_Profile', 'StakeholderController@addDetails')->name('stakeholderDetails')->middleware('stakeholder');
+Route::any('/add_stakeholder_Profile', 'StakeholderController@addDetails')->name('add_stakeholder_Profile');
 
 /**do to dashboard button */
 Route::get('/used_logged_in', 'StakeholderController@redirectTo')->name('goToDashboard');

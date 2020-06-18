@@ -4,8 +4,10 @@
 @section('content')
 <div class="container shadow-sm p-3 mb-5 rounded bg-light">
     <div class="p-3 mb-2 bg-secondary text-white text-center"><h4>ADD PROFILE DETAILS</h4></div>
-    <form action="post" action ="{{route('stakeholderDetails')}}">
-    <div class="form-row">
+        <form method="post" action ="{{route('add_stakeholder_Profile')}}">
+            @csrf
+            <div>
+            <div class="form-row">
         <div class="form-group col-md-6">
         <label for="inputEmail4">Company Name *</label>
         <input type="text" name ="s_name"class="form-control" id="inputEmail4">
@@ -44,11 +46,12 @@
         <input type="text" name ="number"class="form-control" id="inputZip "placeholder="number">
         </div>
     </div>
-    <div>
-    <button type="submit" class="btn btn-primary">Add Details</button>
-    <a class="btn btn-danger btn-sm pull-right" href="#">Back</a>
+    
+                <button type="submit" class="btn btn-primary">Add Details</button>
+                <a class="btn btn-danger btn-sm pull-right" href="#">Back</a>
+            </div>
+        </form>
     </div>
-    </form>
 </div>
 
 @endsection

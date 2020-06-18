@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Image');
     }
+
+    public function pending_course()
+    {
+        return $this->hasMany('App\Pending_Course');
+    }
 }

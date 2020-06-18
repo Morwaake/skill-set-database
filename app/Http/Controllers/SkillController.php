@@ -3,23 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Skill;
+use App\Pending_Course;
 use Auth;
+use Validator,Redirect,Response,File;
+Use App\Image;
 
 class SkillController extends Controller
 {
     //
     public function addSkills(Request $request){
-        $skill = new Skill;
+        $pending_course = new Pending_Course;
         /* Store Skill Details*/
-        $skill->user_id = Auth::id();
-        $skill->name = $request->name;
-        $skill->category = $request->category;
-        $skill->work_experience_on_skill = $request->experience;
-        $skill->obtained = $request->obtained;
-        $skill->level = $request->level;
-    
-        $skill->save();
+        $pending_course->user_id = Auth::id();
+        $pending_course->name = $request->name;
+        $pending_course->category = $request->category;
+        $pending_course->level = $request->level;
+        
+        request()->validate([
+            'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+       if ($files = $request->file('fileUpload')) {
+           $destinationPath = 'public/image/'; // upload path
+           $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+           $files->move($destinationPath, $profileImage);
+           $insert['image'] = "$profileImage";
+        }
+        $check = Image::insertGetId($insert);
+        $pending_course->save();
  
         
 

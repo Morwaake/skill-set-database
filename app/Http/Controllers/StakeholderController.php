@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use DB;
+use App\Http\Controllers\Stakeholder;
 use Auth;
 
 class StakeholderController extends Controller
@@ -23,18 +24,21 @@ class StakeholderController extends Controller
 
     public function addDetails(Request $request)
      {
-        $stakeholder = new Stakeholder;
+        
+        $stakeholder = new \App\Stakeholder();
+        
         /* Store Adept Details*/
         $stakeholder->user_id =Auth::id();
         $stakeholder->s_name = $request->s_name;
         $stakeholder->email = $request->email;
         $stakeholder->code = $request->country_code;
         $stakeholder->address = $request->address;
+        $stakeholder->location = $request->location;
         $stakeholder->city = $request->city;
         $stakeholder->number = $request->number;
         $stakeholder->save();
         
-        return view("Stakeholder.index")->with('message','details successfully added !!!!');
+        return view('Stakeholder.index')->with('message','details successfully added !!!!');
      }
 
 
@@ -71,10 +75,10 @@ class StakeholderController extends Controller
         }
         else{
             if($level === null && $category === null){
-            $searchResults = DB::table('skills')
-                        ->join('adepts','skills.user_id','=','adepts.user_id')
+            $searchResults = DB::table('pending__courses')
+                        ->join('adepts','pending__courses.user_id','=','adepts.user_id')
                         ->where('name','LIKE','%'.$name.'%')
-                        ->select('skills.id', 'skills.name', 'skills.category','skills.work_experience_on_skill','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
                     
     
@@ -85,10 +89,10 @@ class StakeholderController extends Controller
                         return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
             }
             if($name === null && $category === null){
-                $searchResults = DB::table('skills')
-                            ->join('adepts','skills.user_id','=','adepts.user_id')
+                $searchResults = DB::table('pending__courses')
+                            ->join('adepts','pending__courses.user_id','=','adepts.user_id')
                             ->where('level','LIKE','%'.$level.'%')
-                            ->select('skills.id', 'skills.name', 'skills.category','skills.work_experience_on_skill','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                            ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                             ->get();
         
                         if(count($searchResults) > 0)
@@ -97,10 +101,10 @@ class StakeholderController extends Controller
                             return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
                 }
                 if($level === null && $name === null){
-                    $searchResults = DB::table('skills')
-                                ->join('adepts','skills.user_id','=','adepts.user_id')
+                    $searchResults = DB::table('pending__courses')
+                                ->join('adepts','pending__courses.user_id','=','adepts.user_id')
                                 ->where('category','LIKE','%'.$category.'%')
-                                ->select('skills.id', 'skills.name', 'skills.category','skills.work_experience_on_skill','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                                ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                                 ->get();
             
                             if(count($searchResults) > 0)
@@ -109,12 +113,12 @@ class StakeholderController extends Controller
                                 return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
                     }
             else{
-                $searchResults = DB::table('deeds')
-                        ->join('adepts','skills.user_id','=','adepts.user_id')
+                $searchResults = DB::table('pending__courses')
+                        ->join('adepts','pending__courses.user_id','=','adepts.user_id')
                         ->where('level','LIKE','%'.$level.'%')
                         ->where('category','LIKE','%'.$category.'%')
                         ->where('name','LIKE','%'.$name.'%')
-                        ->select('skills.id', 'skills.name', 'skills.category','skills.work_experience_on_skill','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->select('pending_courses.id', 'pending_courses.name', 'pending_courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
     
                     if(count($searchResults) > 0)

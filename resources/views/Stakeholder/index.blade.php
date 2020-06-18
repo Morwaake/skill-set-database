@@ -26,7 +26,7 @@
             </select>
             </div>
             <div class="col-md-2">
-            <select id="select" required name="level" class="custom-select">
+            <select id="select"  name="level" class="custom-select">
               <option value="">skill level..</option>
               <option value="beginner">Beginner</option>
               <option value="professional">Professional</option>

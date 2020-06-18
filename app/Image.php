@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     //
+    protected $fillable = ['user_id', 'link'];
+
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User'); 
     }
 }
