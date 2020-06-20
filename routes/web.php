@@ -44,3 +44,6 @@ Route::any('/add_stakeholder_Profile', 'StakeholderController@addDetails')->name
 
 /**do to dashboard button */
 Route::get('/used_logged_in', 'StakeholderController@redirectTo')->name('goToDashboard');
+
+/**view to admin */
+Route::get('/admin', 'AdminController@index')->name('admin');
