@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function skills(){
-        return $this->hasMany('App\Skill');
+        return $this->hasOne('App\Skill');
     }
 
     public function profile()
@@ -59,5 +59,10 @@ class User extends Authenticatable
     public function pending_course()
     {
         return $this->hasMany('App\Pending_Course');
+    }
+
+    public function pending_skill()
+    {
+        return $this->hasOne('App\Pending_Course');
     }
 }

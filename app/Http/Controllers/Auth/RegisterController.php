@@ -43,6 +43,7 @@ class RegisterController extends Controller
                 $this->redirectTo = '/stakeholder';
                 return $this->redirectTo;
                 break;
+                
             
             default:
                 $this->redirectTo = '/login';
