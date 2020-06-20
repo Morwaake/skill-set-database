@@ -12,10 +12,10 @@ Use App\Image;
 
 class SkillController extends Controller
 {
-    //
+    
     public function addSkills(Request $request){
         $pending_course = new Pending_Course;
-        $pending_skill = new Pending_Skill;
+         $pending_skill = new Pending_Skill;
         /* Store Skill Details*/
         $category = $request->category;
         $current_id = Auth::id();
@@ -23,6 +23,19 @@ class SkillController extends Controller
         $pending_course->name = $request->name;
         $pending_course->category = $request->category;
         $pending_course->level = $request->level;
+         
+        //validate incoming request
+        $validate = Validator::make($request->all(), [
+            //'category' => ['required', 'string', 'max:255'],
+            //'name' => ['required', 'string', 'max:255'],
+            $current_id => [ 'integer', 'max:255', 'unique:pending__skills']
+        ]);
+        
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)
+                                     ->withInput();
+        }
+
 
         $pending_skill ->Programming=0;
         $pending_skill ->Networks=0;

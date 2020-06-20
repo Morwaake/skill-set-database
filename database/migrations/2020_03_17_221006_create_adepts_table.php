@@ -15,7 +15,7 @@ class CreateAdeptsTable extends Migration
     {
         Schema::create('adepts', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->unique;
+            $table->string('first_name');
             $table->string('last_name');
             $table->integer('Phone');
             $table->string('address');
