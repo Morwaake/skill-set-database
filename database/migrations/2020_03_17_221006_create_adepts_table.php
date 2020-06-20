@@ -15,14 +15,14 @@ class CreateAdeptsTable extends Migration
     {
         Schema::create('adepts', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->unique;
+            $table->string('first_name');
             $table->string('last_name');
-            $table->integer('Phone');
+            $table->integer('Phone')->unique;
             $table->string('address');
             $table->string('city');
-            $table->string('email');
+            $table->string('email')->unique;
             $table->date('date_of_birth');
-            $table->string('user_id');
+            $table->integer('user_id')->unique;
             $table->timestamps();
         });
     }

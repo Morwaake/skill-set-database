@@ -17,12 +17,11 @@ class CreateStakeholdersTable extends Migration
             $table->id();
             $table->string('s_name')->unique;
             $table->string('email')->unique;
-            $table->string('code')->nullable;
-            $table->integer('number');
+            $table->integer('number')->unique;
             $table->string('address');
             $table->string('city');
             $table->string('location');
-            $table->string('user_id');
+            $table->integer('user_id')->unique;
             $table->timestamps();
         });
     }
