@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->string('level');
+            $table->boolean('status');
             $table->Integer('user_id');
             $table->timestamps();
         });

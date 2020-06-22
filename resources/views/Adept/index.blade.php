@@ -30,14 +30,14 @@
                  
                   <p class="lead">ADD PROFILE</p>
                 </div>
-              </div>
-              <div class="col-md-3"></a>
+              </div></a>
+              <div class="col-md-3"><a href="{{route('viewSkillholder')}}">
                 <div class="box bg-info">
 
                   
                   <p class="lead">VIEW PROFILE</p>
                 </div>
-              </div>
+              </div></a>
               <div class="col-md-3"><a href="{{route('addSkill')}}">
                 <div class="box bg-danger">
                  

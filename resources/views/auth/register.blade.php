@@ -33,7 +33,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="role" id="role" value="1" >
                                 <label class="form-check-label" for="role">
-                                    Adept
+                                    Skills Holder
                                 </label>
                                 <input class="form-check-input ml-4" type="radio" name="role" id="role" value="2">
                                 <label class="form-check-label ml-5" for="role">

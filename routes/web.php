@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**add adept profile details */
 Route::get('/add_Profile_Details', 'AdeptController@addDetailsForm')->name('addAdeptDetailsForm');
 Route::post('/addProfiles', 'AdeptController@addDetails')->name('addProfileDetails');
+Route::get('/viewProfiles', 'AdeptController@viewProfile')->name('viewSkillholder');
+
 
 
 /** display for different roles */

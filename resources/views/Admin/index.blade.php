@@ -107,6 +107,21 @@
               <a class="nav-link" href="#">Property Search</a>
             </div>
           </li>
+          <li class="nav-item">
+          <a class=" nav-link" href="/home">Approve      Courses</a>
+          </li>
+          <li class="nav-item">
+          <a class=" nav-link" href="/home">Approve Stakeholders</a>
+          </li>
+          <li class="nav-item">
+          <a class=" nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class=" nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class=" nav-link" href="/home">Home</a>
+          </li>
         </ul>
       </div>
   </nav>
@@ -147,14 +162,45 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="homedash">
-            <div><a href="#"><span></span></a><p>Add New Property <img src="{{asset('frontend/img/add.png')}}"> </p></div>
-            <div><a href="#"><span></span></a><p>View Deeds <img src="{{asset('frontend/img/documents.png')}}"></p></div>
-            <div><a href="#"><span></span></a><p>View Properties<img src="{{asset('frontend/img/view.png')}}"></p></div>
+            <div><a href="#"><span></span></a><p>PENDING       SKILLS <img src="{{asset('frontend/img/pendingSkill.png')}}"> </p></div>
+            <div><a href="#"><span></span></a><p>PENDING STAKEHOLDERS <img src="{{asset('frontend/img/pendingStakeholder.png')}}"></p></div>
+            <div><a href="#"><span></span></a><p>VIEW  SKILL OWNERS<img src="{{asset('frontend/img/view.png')}}"></p></div>
           </div>
         </div>
       </div>
+      
     </div>
-    
+    <hr>
+          <div class="shadow-sm p-3 mb-5 bg-white rounded">
+            <h2><P>VIEW INDIVIDUALS WITH SKILLS</P></h2>
+            <div class="card" style="align-content:center;">
+                <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Postal Address</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>Morwaake</td>
+                            <td>Mosihe</td>
+                            <td>Morwaa@gmail.com</td>
+                            <td>+267 71234323</td>
+                            <td>Maun</td>
+                            <td><a href="#" class="btn btn-primary" >View Profile Details</a></td>
+                            </tr>
+                </tbody>
+                </table>
+            </div>
+          </div>
+
      
     </div>
   </div>
