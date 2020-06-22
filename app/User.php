@@ -51,18 +51,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Stakeholder');
     }
 
-    public function image()
-    {
-        return $this->hasMany('App\Image');
-    }
+    
 
-    public function pending_course()
-    {
-        return $this->hasMany('App\Pending_Course');
-    }
-
-    public function pending_skill()
-    {
-        return $this->hasOne('App\Pending_Course');
-    }
+    
 }

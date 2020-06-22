@@ -49,3 +49,7 @@ Route::get('/used_logged_in', 'StakeholderController@redirectTo')->name('goToDas
 
 /**view to admin */
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/viewStakeholdersPending', 'AdminController@pendingStakeholder')->name('viewPendingStakeholders');
+Route::get('/approveStakeholdersPending/{id}', 'AdminController@approveStakeholder')->name('PendingStakeholders');
+Route::get('/viewCoursesPending', 'AdminController@viewPendingCourses')->name('PendingCourse');
+Route::get('/approveCoursePending/{id}', 'SkillController@approve')->name('approvePending');

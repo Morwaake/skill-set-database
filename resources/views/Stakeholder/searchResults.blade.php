@@ -29,7 +29,7 @@
                             </tr>
                         @endforeach
                     @else
-                    <h1 class="mt-5">No Properties found matching criteria. Try to search again!!!</h1>
+                    <h1 class="mt-5">No indivisuals found matching criteria. Try to search again!!!</h1>
                     @endif
                 </tbody>
                 </table>

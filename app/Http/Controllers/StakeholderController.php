@@ -22,6 +22,8 @@ class StakeholderController extends Controller
         return view('Stakeholder.searchResults');
     }
 
+    
+
     public function addDetails(Request $request)
      {
         
@@ -31,11 +33,11 @@ class StakeholderController extends Controller
         $stakeholder->user_id =Auth::id();
         $stakeholder->s_name = $request->s_name;
         $stakeholder->email = $request->email;
-        $stakeholder->code = $request->country_code;
         $stakeholder->address = $request->address;
         $stakeholder->location = $request->location;
         $stakeholder->city = $request->city;
         $stakeholder->number = $request->number;
+        $stakeholder->status = false;
         $stakeholder->save();
         
         return view('Stakeholder.index')->with('message','details successfully added !!!!');
@@ -52,6 +54,17 @@ class StakeholderController extends Controller
             case 2:
                 $this->redirectTo = '/stakeholder';
                 return view('Stakeholder.index');
+                break;
+
+            case 3:
+                $this->redirectTo = '/admin';
+                $owners= DB::table('users')
+                        ->join('adepts','users.id','=','adepts.user_id')
+                        ->where('users.role',1)
+                        ->select('users.id', 'adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->get();
+                        
+                return view('Admin.index')->withDetails($owners);
                 break;
             
             default:
@@ -75,10 +88,10 @@ class StakeholderController extends Controller
         }
         else{
             if($level === null && $category === null){
-            $searchResults = DB::table('pending__courses')
-                        ->join('adepts','pending__courses.user_id','=','adepts.user_id')
+            $searchResults = DB::table('courses')
+                        ->join('adepts','courses.user_id','=','adepts.user_id')
                         ->where('name','LIKE','%'.$name.'%')
-                        ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->select('courses.id', 'courses.name', 'courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
                     
     
@@ -89,10 +102,10 @@ class StakeholderController extends Controller
                         return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
             }
             if($name === null && $category === null){
-                $searchResults = DB::table('pending__courses')
-                            ->join('adepts','pending__courses.user_id','=','adepts.user_id')
+                $searchResults = DB::table('courses')
+                            ->join('adepts','courses.user_id','=','adepts.user_id')
                             ->where('level','LIKE','%'.$level.'%')
-                            ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                            ->select('courses.id', 'courses.name', 'courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                             ->get();
         
                         if(count($searchResults) > 0)
@@ -101,10 +114,10 @@ class StakeholderController extends Controller
                             return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
                 }
                 if($level === null && $name === null){
-                    $searchResults = DB::table('pending__courses')
-                                ->join('adepts','pending__courses.user_id','=','adepts.user_id')
+                    $searchResults = DB::table('courses')
+                                ->join('adepts','courses.user_id','=','adepts.user_id')
                                 ->where('category','LIKE','%'.$category.'%')
-                                ->select('pending__courses.id', 'pending__courses.name', 'pending__courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                                ->select('courses.id', 'courses.name', 'courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                                 ->get();
             
                             if(count($searchResults) > 0)
@@ -113,12 +126,12 @@ class StakeholderController extends Controller
                                 return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
                     }
             else{
-                $searchResults = DB::table('pending__courses')
-                        ->join('adepts','pending__courses.user_id','=','adepts.user_id')
+                $searchResults = DB::table('ourses')
+                        ->join('adepts','courses.user_id','=','adepts.user_id')
                         ->where('level','LIKE','%'.$level.'%')
                         ->where('category','LIKE','%'.$category.'%')
                         ->where('name','LIKE','%'.$name.'%')
-                        ->select('pending_courses.id', 'pending_courses.name', 'pending_courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->select('courses.id', 'courses.name', 'courses.category','adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
     
                     if(count($searchResults) > 0)

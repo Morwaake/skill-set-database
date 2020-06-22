@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Stakeholder;
+use DB;
 
 class AdminController extends Controller
 {
@@ -12,8 +14,51 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('Admin.index');
+        $owners= DB::table('users')
+        ->join('adepts','users.id','=','adepts.user_id')
+        ->where('role',1)
+        ->select('users.id', 'adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+        ->get();
+       
+        //$data = [0*''firs]
+        return view('Admin.index')->withDetails($owners);
     }
+
+    public function pendingStakeholder(){
+        $pendings= DB::table('stakeholders')
+        ->where('status',0)
+        ->select('stakeholders.id', 'stakeholders.s_name','stakeholders.email', 'stakeholders.number')
+        ->get();
+
+
+        return view('Admin.pendingStakeholder')->withDetails($pendings);
+    }
+
+    public function viewPendingCourses(){
+        $pendingcourses= DB::table('courses')
+                        ->where('status',0)
+                        ->select('courses.id', 'courses.name','courses.category', 'courses.level')
+                        ->get();
+
+
+        return view('Admin.pendingCourses')->withDetails($pendingcourses);
+    }
+
+
+    public function approveStakeholder($id){
+        $stakeholder = Stakeholder::find($id)->first();
+        if($stakeholder->status == 0){
+            $stakeholder->status = 1;
+        }
+        else{
+            $stakeholder->status = 0; 
+        }
+        $stakeholder->save();
+
+        return view('Admin.pendingStakeholder')->with('message','stakeholder succefully approved!');
+
+    }
+        
 
     /**
      * Show the form for creating a new resource.

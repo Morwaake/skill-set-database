@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->Integer('Programming');
             $table->Integer('Networks');
-            $table->Integer('Web-_esign');
+            $table->Integer('Web_Design');
             $table->Integer('Database');
             $table->Integer('Data_Analysis');
             $table->Integer('Cybersecurity');

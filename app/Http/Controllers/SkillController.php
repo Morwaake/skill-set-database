@@ -32,8 +32,9 @@ class SkillController extends Controller
         $course->save();
 
         $image->link = $proof->getFilename().'.'.$extension;
-        $image->user_id = Auth::id();
+        $image->course_id = $course->id;
         $image->save();
+
 
         return view('Adept.index')->with('success', 'Skill added');
     }
@@ -41,9 +42,19 @@ class SkillController extends Controller
     public function addSkill(){
         return view('Adept.addSkill');
     }
+
+
+
+
+
     public function approve($id){
-        $course = Course::find($id)->get();
-        $course->status = true;
+        $course = Course::find($id)->first();
+        if($course->status == 0){
+            $course->status = 1;
+        }
+        else{
+            $course->status = 0; 
+        }
         $course->save();
         
         $skill = Skill::where('user_id',$course->user_id)->get();

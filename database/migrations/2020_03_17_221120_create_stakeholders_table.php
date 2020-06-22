@@ -21,6 +21,7 @@ class CreateStakeholdersTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('location');
+            $table->boolean('status');
             $table->integer('user_id')->unique;
             $table->timestamps();
         });

@@ -162,44 +162,51 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="homedash">
-            <div><a href="#"><span></span></a><p>PENDING       SKILLS <img src="{{asset('frontend/img/pendingSkill.png')}}"> </p></div>
-            <div><a href="#"><span></span></a><p>PENDING STAKEHOLDERS <img src="{{asset('frontend/img/pendingStakeholder.png')}}"></p></div>
-            <div><a href="#"><span></span></a><p>VIEW  SKILL OWNERS<img src="{{asset('frontend/img/view.png')}}"></p></div>
+            <div><a href="{{route('PendingCourse')}}"><span></span></a><p>PENDING       SKILLS <img src="{{asset('frontend/img/pendingSkill.png')}}"> </p></div>
+            <div><a href="{{route('viewPendingStakeholders')}}"><span></span></a><p>PENDING STAKEHOLDERS <img src="{{asset('frontend/img/pendingStakeholder.png')}}"></p></div>
+            <div><a href="#"><span></span></a><p>ALL SKILL OWNERS<img src="{{asset('frontend/img/view.png')}}"></p></div>
           </div>
         </div>
       </div>
       
     </div>
     <hr>
-          <div class="shadow-sm p-3 mb-5 bg-white rounded">
-            <h2><P>VIEW INDIVIDUALS WITH SKILLS</P></h2>
-            <div class="card" style="align-content:center;">
-                <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Mobile</th>
-                    <th scope="col">Postal Address</th>
-                    <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Morwaake</td>
-                            <td>Mosihe</td>
-                            <td>Morwaa@gmail.com</td>
-                            <td>+267 71234323</td>
-                            <td>Maun</td>
-                            <td><a href="#" class="btn btn-primary" >View Profile Details</a></td>
-                            </tr>
-                </tbody>
-                </table>
-            </div>
-          </div>
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+      <h2><P>VIEW INDIVIDUALS WITH SKILLS</P></h2>
+      <div class="card" style="align-content:center;">
+          <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">City</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if(isset($details))
+            @foreach($details as $owners)
+              <tr>
+              <th scope="row">{{ $owners->id}}</th>
+              <td>{{ $owners->first_name}}</td>
+              <td>{{ $owners->last_name}}</td>
+              <td>{{ $owners->email}}</td>
+              <td>{{ $owners->Phone}}</td>
+              <td>{{ $owners->city}}</td>
+              <td><a href="#" class="btn btn-primary" >View Profile Details</a></td>
+              </tr>
+            @endforeach
+          
+          </tbody>
+          @else
+            <h1 class="mt-5">No Users in the system!!!</h1>
+          @endif
+          </table>
+      </div>
+    </div>
 
      
     </div>
