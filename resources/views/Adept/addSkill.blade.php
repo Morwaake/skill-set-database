@@ -27,7 +27,7 @@
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <form method="post" action="{{route('addSkills')}}">
+		                    <form method="post" action="{{route('addSkills')}}" enctype="multipart/form-data">
                         @csrf
                               <div class="form-group row">
                                 <label for="name" class="col-2 col-form-label">Skill Name *</label> 
@@ -55,7 +55,7 @@
                                   </select>
                                 </div>
                               </div> 
-                              <!--<input id="file-upload" type="file" name="fileUpload" accept="image/*" onchange="readURL(this);">
+                              <input id="file-upload" type="file" name="proof" accept="image/*" onchange="readURL(this);">
                               <label for="file-upload" id="file-drag">
                                   <img id="file-image" src="#" alt="Preview" class="hidden">
                                   <div id="start" >
@@ -68,7 +68,7 @@
                                   </div>
                             
                               </label> 
-                              <div class="form-group row">
+                              <!--div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
                                   <input type="file" id="proof" name="link" required class="form-control here" >
