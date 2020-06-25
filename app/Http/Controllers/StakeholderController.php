@@ -48,7 +48,63 @@ class StakeholderController extends Controller
         switch (Auth::user()->role) {
             case 1:
                 $this->redirectTo = '/adept';
-                return view('Adept.index');;
+                $profileBrief= DB::table('adepts')
+                        ->where('user_id', Auth::id())
+                        ->select('adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->get();
+
+                        $numberOfProgramming = DB::table('courses')
+                            ->where('status', 1)
+                            ->where('Category','Programming')
+                            ->count();
+
+                        $numberOfDatabse = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Database')
+                        ->count();
+                        $numberOfNetworks = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Networks')
+                        ->count();
+                        $numberOfWeb = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Web_Design')
+                        ->count();
+                        $numberOfAI = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','AI_and_machine_learning')
+                        ->count();
+                        $numberOfDataAnalysis = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Data_Analysis')
+                        ->count();
+                        $numberOfCyber = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Cybersecurity')
+                        ->count();
+                        $numberOfApp = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Application_Development')
+                        ->count();
+
+
+                        $data =[
+
+                            'profileBrief'=>$profileBrief,
+                            'numberOfProgramming'=>$numberOfProgramming,
+                            'numberOfDatabse'=>$numberOfDatabse,
+                            'numberOfNetworks'=>$numberOfNetworks,
+                            'numberOfWeb'=>$numberOfWeb,
+                            'numberOfAI'=>$numberOfAI,
+                            'numberOfDataAnalysis'=>$numberOfDataAnalysis,
+                            'numberOfCyber'=>$numberOfCyber,
+                            'numberOfApp'=>$numberOfApp,
+                            
+
+                        ];
+
+
+                return view('Adept.index')->withDetails($profileBrief)->with($data);
                 break;
 
             case 2:
@@ -63,6 +119,8 @@ class StakeholderController extends Controller
                         ->where('users.role',1)
                         ->select('users.id', 'adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
+
+                        
                         
                 return view('Admin.index')->withDetails($owners);
                 break;

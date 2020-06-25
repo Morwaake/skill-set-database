@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="tContainer">
-        <div class="card" style="align-content:center;">
+<div class="Container">
+        <div class="mt-3 card col-9 mx-auto" style="align-content:center;">
+        @if(isset($details))
                 <table class="table">
-                <thead class="thead-dark">
+                <h5 class="card-header mt-3">Pending courses</h5>
+                <thead class="thead-dark mt-2">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -14,7 +16,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($details))
                         @foreach($details as $pendingcourses)
                             <tr>
                             <th scope="row">{{ $pendingcourses->id }}</th>
@@ -25,12 +26,14 @@
                             </tr>
                         @endforeach
                     @else
-                    <h1 class="mt-5">No Properties found matching criteria. Try to search again!!!</h1>
+                    <div>
+                        <h1 class="mt-5 text-center">No Pending courses!!!</h1>
+                    </div>
                     @endif
                 </tbody>
                 </table>
-                <div class="row justify-content-center">
-                    <a href="#" class="cool"><button class="but btn btn-danger">BACK</button></a>
+                <div class="card-footer">
+                    <a href="/admin" class="cool"><button class="but btn btn-danger">BACK</button></a>
                 </div>
             </div>
 </div>

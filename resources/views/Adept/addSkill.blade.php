@@ -56,7 +56,7 @@
                                 </div>
                               </div> 
                               <input id="file-upload" type="file" name="proof" accept="image/*" onchange="readURL(this);">
-                              <label for="file-upload" id="file-drag">
+                              <!--label for="file-upload" id="file-drag">
                                   <img id="file-image" src="#" alt="Preview" class="hidden">
                                   <div id="start" >
                                       <i class="fa fa-download" aria-hidden="true"></i>
@@ -67,7 +67,7 @@
                                       <span class="text-danger">{{ $errors->first('fileUpload') }}</span>
                                   </div>
                             
-                              </label> 
+                              </label--> 
                               <!--div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
