@@ -92,8 +92,8 @@
               <a class="btn btn-primary btn-sm ml-1" href="#">Search</a>
       </div>
       <div class="row">
-        <div class="col-sm-3 ">
-          <div class="well d-inline-block">
+        <div class="col-sm-3  ">
+          <div class="well d-inline-block bg-info">
             <h4>Highest Skill: </h4>
             <p>{{$maximumColumn}} ({{$maximumPoints}})</p> 
           </div>

@@ -34,7 +34,7 @@ Route::get('/stakeholder', 'StakeholderController@index')->name('stakeholder')->
 
 /**add skill */
 Route::get('/addSkills', 'SkillController@addSkill')->name('addSkill');
-Route::any('/addSkillss', 'SkillController@addSkills')->name('addSkills');
+Route::any('/addSkillss', 'AdeptController@addSkills')->name('addSkills');
 
 /**view the display of searched */
 Route::any('/searchResults', 'StakeholderController@searchBySkill')->name('results')->middleware('stakeholder');

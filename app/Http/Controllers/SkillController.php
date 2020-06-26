@@ -24,19 +24,23 @@ class SkillController extends Controller
         Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
     
         /* Store Skill Details*/ 
+        $available = Course::where('user_id',Auth::id())->get();
+        foreach($available as $avail){
+            if( $avail->name === $request->name && $avail->category === $request->category && $avail->level===$request->level){
+                return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
+        }
+        
         $course->user_id = Auth::id();
         $course->name = $request->name;
         $course->category = $request->category;
         $course->level = $request->level;
         $course->status = false;
-
-        
         $course->save();
 
         $image->link = $proof->getFilename().'.'.$extension;
         $image->course_id = $course->id;
         $image->save();
-
+                
         $profileBrief= DB::table('adepts')
                         ->where('user_id', Auth::id())
                         ->select('adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
@@ -167,6 +171,7 @@ class SkillController extends Controller
 
         return view('Adept.index')->withDetails($profileBrief)->with($data);
     }
+}
 
     public function addSkill(){
         return view('Adept.addSkill');

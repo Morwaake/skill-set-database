@@ -87,9 +87,74 @@ class StakeholderController extends Controller
                         ->where('Category','Application_Development')
                         ->count();
 
+                    $maximumPoints = 0;
+                    $maximumColumn = "";
+
+                    //retriving points for individual skill category
+                    $programmingV = DB::table('skills')->select('Programming')->where('user_id', Auth::id())->value('Programming');
+                    $databaseV = DB::table('skills')->select('Database')->where('user_id', Auth::id())->value('Database');
+                    $cybersecurityV = DB::table('skills')->select('Cybersecurity')->where('user_id', Auth::id())->value('Cybersecurity');
+                    $aiV = DB::table('skills')->select('AI_and_machine_learning')->where('user_id', Auth::id())->value('AI_And_Machine_Learning');
+                    $networksV = DB::table('skills')->select('Networks')->where('user_id', Auth::id())->value('Networks');
+                    $dataAnalysisV = DB::table('skills')->select('Data_Analysis')->where('user_id', Auth::id())->value('Data_Analysis');
+                    $appDevelopmentV = DB::table('skills')->select('Application_Development')->where('user_id', Auth::id())->value('Application_Development');
+
+                    $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
+                    
+            
+                    if($maximumPoints < $programmingV){
+                        $maximumPoints = $programmingV ;
+                        $maximumColumn="Programming";
+                    }
+                  
+                    elseif($maximumPoints < $databaseV){
+                        $maximumPoints = $databaseV ;
+                        $maximumColumn="Database";
+                       
+                    }
+                    elseif($maximumPoints < $cybersecurityV){
+                        $maximumPoints = $cybersecurityV ;
+                        $maximumColumn="Cybersecurity";
+            
+                    }
+                    elseif($maximumPoints < $aiV){
+                        $maximumPoints = $aiV ;
+                        $maximumColumn="AI_And_Machine_Learning";
+            
+                    }
+                    elseif($maximumPoints < $webDesignV){
+                        $maximumPoints = $webDesignV ;
+                        $maximumColumn="Web_Design";
+            
+                    }
+                    elseif($maximumPoints < $networksV){
+                        $maximumPoints = $networksV ;
+                        $maximumColumn="Networks";
+            
+                    }
+                    elseif($maximumPoints < $dataAnalysisV){
+                        $maximumPoints = $dataAnalysisV ;
+                        $maximumColumn="Data_Analysis";
+            
+                    }
+                    elseif($maximumPoints < $appDevelopmentV){
+                        $maximumPoints = $appDevelopmentV ;
+                        $maximumColumn="Application_Development";
+            
+                    }
+                    else{
+                        $maximumPoints = 0;
+                        $maximumColumn = "No Skill";
+                    }
+
+
+
 
                         $data =[
 
+                            'maximumPoints'=>$maximumPoints,
+                            'maximumColumn'=> $maximumColumn,
+                            'overalPoints'=> $overalPoints,
                             'profileBrief'=>$profileBrief,
                             'numberOfProgramming'=>$numberOfProgramming,
                             'numberOfDatabse'=>$numberOfDatabse,

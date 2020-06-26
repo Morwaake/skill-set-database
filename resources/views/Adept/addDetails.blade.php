@@ -2,16 +2,16 @@
 
 
 @section('content')
-<div class="container shadow-sm p-3 mb-5 rounded bg-light">
-    <div class="p-3 mb-2 bg-secondary text-white text-center"><h4>ADD PROFILE DETAILS</h4></div>
+<div class="container shadow-sm p-5 mt-5 mb-4 col-md-8 bg-light rounded">
+    <div class="p-3 mb-2 card-header text-center"><h4>ADD PROFILE DETAILS</h4></div>
     <form method="post" action ="{{route('addProfileDetails')}}">
     @csrf
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 ">
         <label for="inputEmail4">First Name *</label>
         <input type="text" require name ="firstname"class="form-control" id="inputEmail4">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 ">
         <label for="inputPassword4">Last Name *</label>
         <input type="text" require name ="lastName" class="form-control" id="inputPassword4">
         </div>
@@ -46,8 +46,8 @@
         </div>
     </div>
     <div>
+    <a class="btn btn-danger  float-right" href="#">Back</a>
     <button type="submit" class="btn btn-primary">Add Details</button>
-    <a class="btn btn-danger btn-sm pull-right" href="#">Back</a>
     </div>
     </form>
 </div>

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 use App\Adept;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Auth;
 use DB;
 use App\Skill;
+use App\Course;
+use App\Image;
 class AdeptController extends Controller
 {
     //
@@ -69,53 +73,25 @@ class AdeptController extends Controller
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
-            
-                    if($maximumPoints < $programmingV){
-                        $maximumPoints = $programmingV ;
-                        $maximumColumn="Programming";
-                    }
-                  
-                    elseif($maximumPoints < $databaseV){
-                        $maximumPoints = $databaseV ;
-                        $maximumColumn="Database";
-                       
-                    }
-                    elseif($maximumPoints < $cybersecurityV){
-                        $maximumPoints = $cybersecurityV ;
-                        $maximumColumn="Cybersecurity";
-            
-                    }
-                    elseif($maximumPoints < $aiV){
-                        $maximumPoints = $aiV ;
-                        $maximumColumn="AI_And_Machine_Learning";
-            
-                    }
-                    elseif($maximumPoints < $webDesignV){
-                        $maximumPoints = $webDesignV ;
-                        $maximumColumn="Web_Design";
-            
-                    }
-                    elseif($maximumPoints < $networksV){
-                        $maximumPoints = $networksV ;
-                        $maximumColumn="Networks";
-            
-                    }
-                    elseif($maximumPoints < $dataAnalysisV){
-                        $maximumPoints = $dataAnalysisV ;
-                        $maximumColumn="Data_Analysis";
-            
-                    }
-                    elseif($maximumPoints < $appDevelopmentV){
-                        $maximumPoints = $appDevelopmentV ;
-                        $maximumColumn="Application_Development";
-            
-                    }
-                    else{
-                        $maximumPoints = 0;
-                        $maximumColumn = "No Skill";
-                    }
+                    $values = [
+                        'Programming'=>$programmingV,
+                        'Database'=>$databaseV,
+                        'Cybersecurity'=>$cybersecurityV,
+                        'AI'=>$aiV,
+                        'Networks'=>$networksV,
+                        'Data_Analysis'=>$dataAnalysisV,
+                        'Application_Development'=>$appDevelopmentV,
+                    ];
 
+                    foreach($values as $key => $value){
+                        if($value > $maximumPoints){
+                            $maximumPoints = $value;
+                            $maximumColumn = $key;
+                        }
 
+                    }
+                    
+            
                     $data =[
                         'maximumPoints'=>$maximumPoints,
                         'maximumColumn'=> $maximumColumn,
@@ -129,14 +105,43 @@ class AdeptController extends Controller
                         'numberOfDataAnalysis'=>$numberOfDataAnalysis,
                         'numberOfCyber'=>$numberOfCyber,
                         'numberOfApp'=>$numberOfApp,
-                        
-
+    
                     ];
         
 
         
        
         return view('Adept.index')->withDetails($profileBrief)->with($data);
+    }
+    public function addSkills(Request $request){
+        
+        $course = new Course;
+        $image = new Image;
+       
+        $proof = $request->file('proof');
+        $extension = $proof->getClientOriginalExtension();
+        Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
+    
+        /* Store Skill Details*/ 
+        $available = Course::where('user_id',Auth::id())->get();
+        foreach($available as $avail){
+            if( $avail->name === $request->name && $avail->category === $request->category && $avail->level===$request->level){
+                return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
+            }
+        }
+        
+        $course->user_id = Auth::id();
+        $course->name = $request->name;
+        $course->category = $request->category;
+        $course->level = $request->level;
+        $course->status = false;
+        $course->save();
+
+        $image->link = $proof->getFilename().'.'.$extension;
+        $image->course_id = $course->id;
+        $image->save();
+
+        return $this->index()->with('message','Susscessfully added skill');
     }
 
 

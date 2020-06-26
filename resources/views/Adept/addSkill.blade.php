@@ -5,15 +5,20 @@
 @section('content')
 <div>
    <div class="container my-auto">
+   @if(session()->has('message'))
+                     <div class="alert alert-danger mx-auto">
+                     {{session()->get('message')}}
+                     </div>
+                    @endif
+                    <div>
 		<div >
-		    <div class="card ">
+		    <div class="card mt-4 col-md-8 mx-auto">
 		        <div class="card-body ">
 		            <div class="row">
-		                <div class="col-md-10">
-		                    <h4 class='bg-secondary text-center'>ADD YOUR SKILL</h4>
+		                <div class="col-md-12">
+		                    <h4 class='card-header text-center'>ADD YOUR SKILL</h4>
 		                    <hr>
 		                </div>
-                    <div>
                       @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -55,7 +60,7 @@
                                   </select>
                                 </div>
                               </div> 
-                              <input id="file-upload" type="file" name="proof" accept="image/*" onchange="readURL(this);">
+                              
                               <!--label for="file-upload" id="file-drag">
                                   <img id="file-image" src="#" alt="Preview" class="hidden">
                                   <div id="start" >
@@ -68,15 +73,16 @@
                                   </div>
                             
                               </label--> 
-                              <!--div class="form-group row">
+                              <div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
-                                  <input type="file" id="proof" name="link" required class="form-control here" >
+                                <input id="file-upload" type="file" name="proof" accept="image/*" onchange="readURL(this);">
                                 </div>
-                              </div>-->                         
+                              </div>                         
                               <div class="form-group row">
-                                <div class="button-4 col-8">
-                                <button type="submit" class="btn btn-secondary">Add Skill</button>
+                                <div class="button-4 col-md-12 mt-3">
+                                <button type="submit" class="btn btn-danger float-right">Add Skill</button>
+                                <button type="submit" class="btn btn-primary ">Add Skill</button>
                                 </div>
                               </div>
                             </form>
