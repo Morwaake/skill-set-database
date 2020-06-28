@@ -38,7 +38,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="#">Skill Set Database</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -55,13 +55,13 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <h2>Logo</h2>
+      <h2>Skill Set Database</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
+        <li ><a href="#section1">Dashboard</a></li>
         <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
-        <li><a href="#">Logout</a></li>
+        
         <li>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -164,12 +164,12 @@
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Application Development</td>
-            <td><i>39 mins</i></td>
+            <td><i>0</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Data Analysis</td>
-            <td><i>39 mins</i></td>
+            <td><i>0</i></td>
           </tr>
         </table>
     </div>

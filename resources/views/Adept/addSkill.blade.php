@@ -16,7 +16,7 @@
 		        <div class="card-body ">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4 class='card-header text-center'>ADD YOUR SKILL</h4>
+		                    <h4 class='card-header text-center'>ADD YOUR COURSE</h4>
 		                    <hr>
 		                </div>
                       @if ($errors->any())
@@ -35,7 +35,7 @@
 		                    <form method="post" action="{{route('addSkills')}}" enctype="multipart/form-data">
                         @csrf
                               <div class="form-group row">
-                                <label for="name" class="col-2 col-form-label">Skill Name *</label> 
+                                <label for="name" class="col-2 col-form-label">COURSE Name *</label> 
                                 <div class="col-8">
                                   <input id="name" name="name" placeholder="Skill Name" class="form-control here" type="text" required>
                                 </div>
