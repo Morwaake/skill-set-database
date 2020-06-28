@@ -16,7 +16,7 @@
 		        <div class="card-body ">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4 class='card-header text-center'>ADD YOUR SKILL</h4>
+		                    <h4 class='card-header text-center'>ADD YOUR COURSE</h4>
 		                    <hr>
 		                </div>
                       @if ($errors->any())

@@ -56,7 +56,7 @@
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Skill Set Database</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
+        <li ><a href="#section1">Dashboard</a></li>
         <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
@@ -162,12 +162,12 @@
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Application Development</td>
-            <td><i>39 mins</i></td>
+            <td><i>0</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Data Analysis</td>
-            <td><i>39 mins</i></td>
+            <td><i>0</i></td>
           </tr>
         </table>
     </div>

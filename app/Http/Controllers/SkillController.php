@@ -15,7 +15,7 @@ class SkillController extends Controller
 {
     
     public function addSkills(Request $request){
-        dd($request->all());
+    
         $course = new Course;
         $image = new Image;
         

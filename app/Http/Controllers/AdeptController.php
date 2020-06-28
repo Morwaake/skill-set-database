@@ -114,11 +114,11 @@ class AdeptController extends Controller
        
         return view('Adept.index')->withDetails($profileBrief)->with($data);
     }
-    public function addSkills(Request $request){
-        
+    public function addSkills(Request $request){ 
+       
         $course = new Course;
         $image = new Image;
-       
+        $skill = new Skill;
         $proof = $request->file('proof');
         $extension = $proof->getClientOriginalExtension();
         Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
@@ -130,9 +130,10 @@ class AdeptController extends Controller
                 return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
             }
         }
-        
         $course->user_id = Auth::id();
         $course->name = $request->name;
+        $course->obtained = $request->obtained;
+        $course->year = $request->year;
         $course->category = $request->category;
         $course->level = $request->level;
         $course->status = false;
@@ -141,6 +142,11 @@ class AdeptController extends Controller
         $image->link = $proof->getFilename().'.'.$extension;
         $image->course_id = $course->id;
         $image->save();
+
+        $skill ->category=$request->category;
+        $skill ->points=0;
+        $skill ->user_id = Auth::id();
+        $skill->save();
 
         return $this->index()->with('message','Susscessfully added skill');
     }
