@@ -40,6 +40,7 @@ Route::any('/addSkillss', 'AdeptController@addSkills')->name('addSkills');
 Route::any('/searchResults', 'StakeholderController@searchBySkill')->name('results')->middleware('stakeholder');
 Route::get('/searchResult', 'StakeholderController@viewResults')->name('viewResult');
 Route::get('/allShillholders', 'StakeholderController@viewallskillholders')->name('holders');
+Route::get('/more', 'StakeholderController@moreDetails')->name('moreUserDetails');
 
 /**add stakeholder add profile */
 Route::get('/addProfile', 'StakeholderController@viewDetails')->name('profile')->middleware('stakeholder');

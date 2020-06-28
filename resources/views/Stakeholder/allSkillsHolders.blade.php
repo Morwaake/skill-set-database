@@ -14,19 +14,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+                @if(isset($details))
+                        @foreach($details as $profileBrief)
                             <tr>
-                            <th scope="row">ziga</th>
-                            <td>@gmail.com</td>
-                            <td>77777777</td>
-                            <td>11111111</td>
-                            <td><a href="#" class="btn btn-primary" >Approve</a></td>
+                            <th scope="row">{{$profileBrief->id }}</th>
+                            <td>{{$profileBrief->first_name }}</td>
+                            <td>{{$profileBrief->email }}</td>
+                            <td>{{$profileBrief->Phone }}</td>
+                            <td><a href="{{route('moreUserDetails',$profileBrief->id }}" class="btn btn-primary" >More DetaILS</a></td>
                             </tr>
-                    
+                        @endforeach
+                @else
+                    <h1 class="mt-5">No Pending stakeholders to Approve!!!</h1>
+                @endif
                 </tbody>
                 </table>
                 <div class="row justify-content-center">
-                    <a href="#" class="cool"><button class="but btn btn-danger">BACK</button></a>
+                    <a href="{{ URL::previous() }}" class="cool"><button class="but btn btn-danger">BACK</button></a>
                 </div>
             </div>
 </div>

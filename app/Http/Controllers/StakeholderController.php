@@ -11,7 +11,24 @@ class StakeholderController extends Controller
 {
     //
     public function viewallskillholders(){
-        return view('Stakeholder.allSkillsHolders');
+        $profileBrief= DB::table('adepts')
+                        ->select('adepts.id','adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->get();
+
+        return view('Stakeholder.allSkillsHolders')->withDetails($profileBrief);
+    }
+    public function moreDetails($id){
+        $user = User::find($id)
+                ->join('adepts','users.id','=','adepts.user_id')
+                ->join('courses','users.id','=','courses.user_id')
+                ->join('skills','users.id','=','skills.user_id')
+                ->where('status',1)
+                ->select('adepts.id','adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working',
+                'adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth','courses.id', 'courses.name', 'courses.category','courses.level','courses.obtained',
+                    'courses.year')
+                    ->get();
+        return view('Stakeholder.moredetails')->withDetails($user);
+
     }
     public function index(){
         return view('Stakeholder.index');
