@@ -63,13 +63,14 @@ class AdeptController extends Controller
                     $maximumColumn = "";
 
                     //retriving points for individual skill category
-                    $programmingV = DB::table('skills')->select('Programming')->where('user_id', Auth::id())->value('Programming');
-                    $databaseV = DB::table('skills')->select('Database')->where('user_id', Auth::id())->value('Database');
-                    $cybersecurityV = DB::table('skills')->select('Cybersecurity')->where('user_id', Auth::id())->value('Cybersecurity');
-                    $aiV = DB::table('skills')->select('AI_and_machine_learning')->where('user_id', Auth::id())->value('AI_And_Machine_Learning');
-                    $networksV = DB::table('skills')->select('Networks')->where('user_id', Auth::id())->value('Networks');
-                    $dataAnalysisV = DB::table('skills')->select('Data_Analysis')->where('user_id', Auth::id())->value('Data_Analysis');
-                    $appDevelopmentV = DB::table('skills')->select('Application_Development')->where('user_id', Auth::id())->value('Application_Development');
+                    $programmingV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Programming')->value('points');
+                    $databaseV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Database')->value('points');
+                    $cybersecurityV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Cybersecurity')->value('points');
+                    $aiV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','AI_and_machine_learning')->value('points');
+                    $networksV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Networks')->value('points');
+                    $dataAnalysisV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Data_Analysis')->value('points');
+                    $appDevelopmentV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Application_Development')->value('points');
+
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
@@ -146,7 +147,13 @@ class AdeptController extends Controller
 
 
     public function viewProfile(){
-        return view('Adept.viewProfile');
+
+        $profileBrief= DB::table('adepts')
+                        ->where('user_id', Auth::id())
+                        ->select('adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->get();
+
+        return view('Adept.viewProfile') ->withDetails($profileBrief);
     }
     //
     
@@ -167,6 +174,10 @@ class AdeptController extends Controller
         $adept->user_id =Auth::id();
         $adept->first_name = $request->firstname;
         $adept->last_name = $request->lastName;
+        $adept->place_worked = $request->place_worked;
+        $adept->year_started_working = $request->year_started_working;
+        $adept->year_ended_working = $request->year_ended_working;
+        $adept->languages = $request->languages;
         $adept->Phone = $request->phoneNumber;
         $adept->address = $request->address;
         $adept->city = $request->city;
@@ -174,17 +185,9 @@ class AdeptController extends Controller
         $adept->email = $request->email;
         $adept->save();
 
-        $skill ->Programming=0;
-        $skill ->Networks=0;
-        $skill ->Web_Design=0;
-        $skill ->Database=0;
-        $skill ->Data_Analysis=0;
-        $skill ->Cybersecurity=0;
-        $skill ->AI_and_machine_learning=0;
-        $skill ->Application_development=0;
-        $skill ->user_id = Auth::id();
-        $skill->save();
 
-        return view("Adept.index");
+
+
+        return view("welcome");
      }
 }

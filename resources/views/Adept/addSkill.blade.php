@@ -12,7 +12,7 @@
                     @endif
                     <div>
 		<div >
-		    <div class="card mt-4 col-md-8 mx-auto">
+		    <div class="card mt-4 col-md-10 mx-auto">
 		        <div class="card-body ">
 		            <div class="row">
 		                <div class="col-md-12">
@@ -35,12 +35,6 @@
 		                    <form method="post" action="{{route('addSkills')}}" enctype="multipart/form-data">
                         @csrf
                               <div class="form-group row">
-                                <label for="name" class="col-2 col-form-label">Skill Name *</label> 
-                                <div class="col-8">
-                                  <input id="name" name="name" placeholder="Skill Name" class="form-control here" type="text" required>
-                                </div>
-                              </div>
-                              <div class="form-group row">
                                 <label for="select" class="col-2 col-form-label">Category *</label> 
                                 <div class="col-8">
                                   <select id="select" name="category" class="custom-select">
@@ -48,40 +42,52 @@
                                     <option value="Programming">Programming</option>
                                     <option value="Database">Database</option>
                                     <option value="Data Analysis">Data Analysis</option>
+                                    <option value="Networks">Networks</option>
+                                    <option value="Application_Development">Application Development</option>
+                                    <option value="AI_and_machine_learning">AI and Machine Learning</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
                                   </select>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="name" class="col-2 col-form-label">Course Name *</label> 
+                                <div class="col-8">
+                                  <input id="name" name="name" placeholder="course name" class="form-control here" type="text" required>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="select" class="col-2 col-form-label">Level *</label> 
                                 <div class="col-8">
                                   <select id="select" required name="level" class="custom-select">
-                                    <option value="beginner">Beginner</option>
-                                    <option value="professional">Professional</option>
+                                    <option value="fundamental awarness">Fundamental Awarness</option>
+                                    <option value="limited experience">Limited Experience</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced"> Advanced</option>
+                                    <option value="expert"> Expert</option>
                                   </select>
                                 </div>
                               </div> 
-                              
-                              <!--label for="file-upload" id="file-drag">
-                                  <img id="file-image" src="#" alt="Preview" class="hidden">
-                                  <div id="start" >
-                                      <i class="fa fa-download" aria-hidden="true"></i>
-                                      <div>Select a file or drag here</div>
-                                      <div id="notimage" class="hidden">Please select an image</div>
-                                      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-                                      <br>
-                                      <span class="text-danger">{{ $errors->first('fileUpload') }}</span>
-                                  </div>
-                            
-                              </label--> 
+                              <div class="form-group row">
+                                <label for="name" class="col-2 col-form-label">Place where course completed *</label> 
+                                <div class="col-8">
+                                  <input name="obtained" placeholder="eg University of Botswana or Bootcamp" class="form-control here" type="text" require>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="name" class="col-2 col-form-label">Year of Course Completion *</label> 
+                                <div class="col-8">
+                                  <input id="name" name="year" placeholder="eg 2019" class="form-control here" type="date" required>
+                                </div>
+                              </div>
                               <div class="form-group row">
                                 <label for="Proof" class="col-2 col-form-label">Proof *</label> 
                                 <div class="col-8">
-                                <input id="file-upload" type="file" name="proof" accept="image/*" onchange="readURL(this);">
+                                <input id="file-upload" required type="file" name="proof" accept="image/*" onchange="readURL(this);">
                                 </div>
                               </div>                         
                               <div class="form-group row">
                                 <div class="button-4 col-md-12 mt-3">
-                                <button type="submit" class="btn btn-danger float-right">Add Skill</button>
+                                <a class="btn btn-danger  float-right" href="{{ URL::previous() }}">Back</a>
                                 <button type="submit" class="btn btn-primary ">Add Skill</button>
                                 </div>
                               </div>

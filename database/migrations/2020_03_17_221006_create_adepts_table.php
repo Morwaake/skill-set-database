@@ -17,6 +17,10 @@ class CreateAdeptsTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('place_worked')->nullable();
+            $table->date('year_started_working')->nullable();
+            $table->date('year_ended_working')->nullable();
+            $table->string('languages');
             $table->integer('Phone')->unique;
             $table->string('address');
             $table->string('city');

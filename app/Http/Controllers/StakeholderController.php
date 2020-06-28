@@ -10,6 +10,9 @@ use Auth;
 class StakeholderController extends Controller
 {
     //
+    public function viewallskillholders(){
+        return view('Stakeholder.allSkillsHolders');
+    }
     public function index(){
         return view('Stakeholder.index');
     }
@@ -91,63 +94,36 @@ class StakeholderController extends Controller
                     $maximumColumn = "";
 
                     //retriving points for individual skill category
-                    $programmingV = DB::table('skills')->select('Programming')->where('user_id', Auth::id())->value('Programming');
-                    $databaseV = DB::table('skills')->select('Database')->where('user_id', Auth::id())->value('Database');
-                    $cybersecurityV = DB::table('skills')->select('Cybersecurity')->where('user_id', Auth::id())->value('Cybersecurity');
-                    $aiV = DB::table('skills')->select('AI_and_machine_learning')->where('user_id', Auth::id())->value('AI_And_Machine_Learning');
-                    $networksV = DB::table('skills')->select('Networks')->where('user_id', Auth::id())->value('Networks');
-                    $dataAnalysisV = DB::table('skills')->select('Data_Analysis')->where('user_id', Auth::id())->value('Data_Analysis');
-                    $appDevelopmentV = DB::table('skills')->select('Application_Development')->where('user_id', Auth::id())->value('Application_Development');
+                    $programmingV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Programming')->value('points');
+                    $databaseV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Database')->value('points');
+                    $cybersecurityV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Cybersecurity')->value('points');
+                    $aiV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','AI_and_machine_learning')->value('points');
+                    $networksV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Networks')->value('points');
+                    $dataAnalysisV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Data_Analysis')->value('points');
+                    $appDevelopmentV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Application_Development')->value('points');
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
+                    $values = [
+                        'Programming'=>$programmingV,
+                        'Database'=>$databaseV,
+                        'Cybersecurity'=>$cybersecurityV,
+                        'AI'=>$aiV,
+                        'Networks'=>$networksV,
+                        'Data_Analysis'=>$dataAnalysisV,
+                        'Application_Development'=>$appDevelopmentV,
+                    ];
             
-                    if($maximumPoints < $programmingV){
-                        $maximumPoints = $programmingV ;
-                        $maximumColumn="Programming";
-                    }
-                  
-                    elseif($maximumPoints < $databaseV){
-                        $maximumPoints = $databaseV ;
-                        $maximumColumn="Database";
-                       
-                    }
-                    elseif($maximumPoints < $cybersecurityV){
-                        $maximumPoints = $cybersecurityV ;
-                        $maximumColumn="Cybersecurity";
-            
-                    }
-                    elseif($maximumPoints < $aiV){
-                        $maximumPoints = $aiV ;
-                        $maximumColumn="AI_And_Machine_Learning";
-            
-                    }
-                    elseif($maximumPoints < $webDesignV){
-                        $maximumPoints = $webDesignV ;
-                        $maximumColumn="Web_Design";
-            
-                    }
-                    elseif($maximumPoints < $networksV){
-                        $maximumPoints = $networksV ;
-                        $maximumColumn="Networks";
-            
-                    }
-                    elseif($maximumPoints < $dataAnalysisV){
-                        $maximumPoints = $dataAnalysisV ;
-                        $maximumColumn="Data_Analysis";
-            
-                    }
-                    elseif($maximumPoints < $appDevelopmentV){
-                        $maximumPoints = $appDevelopmentV ;
-                        $maximumColumn="Application_Development";
-            
-                    }
-                    else{
+                    foreach($values as $key => $value){
+                        if($value > $maximumPoints){
+                            $maximumPoints = $value;
+                            $maximumColumn = $key;
+                        }
+                        else{
                         $maximumPoints = 0;
                         $maximumColumn = "No Skill";
+                        }
                     }
-
-
 
 
                         $data =[
@@ -155,7 +131,7 @@ class StakeholderController extends Controller
                             'maximumPoints'=>$maximumPoints,
                             'maximumColumn'=> $maximumColumn,
                             'overalPoints'=> $overalPoints,
-                            'profileBrief'=>$profileBrief,
+                            
                             'numberOfProgramming'=>$numberOfProgramming,
                             'numberOfDatabse'=>$numberOfDatabse,
                             'numberOfNetworks'=>$numberOfNetworks,
@@ -163,8 +139,7 @@ class StakeholderController extends Controller
                             'numberOfAI'=>$numberOfAI,
                             'numberOfDataAnalysis'=>$numberOfDataAnalysis,
                             'numberOfCyber'=>$numberOfCyber,
-                            'numberOfApp'=>$numberOfApp,
-                            
+                            'numberOfApp'=>$numberOfApp,     
 
                         ];
 
