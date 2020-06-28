@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="tContainer">
-        <div class="card" style="align-content:center;">
+        <div class="card ml-5 mr-5 mt-5" style="align-content:center;">
                 <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -14,19 +14,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($details))
-                        @foreach($details as $pendings)
+                   
                             <tr>
-                            <th scope="row">{{ $pendings->id }}</th>
-                            <td>{{ $pendings->s_name }}</td>
-                            <td>{{ $pendings->email }}</td>
-                            <td>{{ $pendings->number }}</td>
-                            <td><a href="{{route('PendingStakeholders',$pendings->id)}}" class="btn btn-primary" >Approve</a></td>
+                            <th scope="row">ziga</th>
+                            <td>@gmail.com</td>
+                            <td>77777777</td>
+                            <td>11111111</td>
+                            <td><a href="#" class="btn btn-primary" >Approve</a></td>
                             </tr>
-                        @endforeach
-                    @else
-                    <h1 class="mt-5">No Pending stakeholders to Approve!!!</h1>
-                    @endif
+                    
                 </tbody>
                 </table>
                 <div class="row justify-content-center">

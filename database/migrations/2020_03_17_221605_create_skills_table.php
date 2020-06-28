@@ -15,15 +15,9 @@ class CreateSkillsTable extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->Integer('Programming');
-            $table->Integer('Networks');
-            $table->Integer('Web_Design');
-            $table->Integer('Database');
-            $table->Integer('Data_Analysis');
-            $table->Integer('Cybersecurity');
-            $table->Integer('AI_and_machine_learning');
-            $table->Integer('Application_Development');
-            $table->Integer('user_id')->unique;
+            $table->string('category');
+            $table->Integer('points');
+            $table->Integer('user_id');
             $table->timestamps(); 
         });
     }

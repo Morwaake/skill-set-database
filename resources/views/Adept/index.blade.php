@@ -46,7 +46,6 @@
         <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
-        <li><a href="#">Logout</a></li>
       </ul>
     </div>
   </div>
@@ -61,7 +60,6 @@
         <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
-        
         <li>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
