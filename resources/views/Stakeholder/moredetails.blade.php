@@ -10,8 +10,8 @@
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
 <body class="w3-light-grey">
-@foreach($details  as $user)
-<div ><p><h2 class='text-center'> Welcome {{$profileBrief-> first_name}} {{$profileBrief-> last_name}}</h2></p></div>
+@foreach($details  as $profileBrief)
+<div ><p><h2 class='ml-5'> Welcome  to {{$profileBrief-> first_name}} {{$profileBrief-> last_name}}'s profile</h2></p></div>
 
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -25,9 +25,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-container">
           <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$user-> address}},{{$user-> city}}</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$user-> email}}</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(+267) {{$user-> Phone}}</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> address}},{{$profileBrief-> city}}</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> email}}</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(+267) {{$profileBrief-> Phone}}</p>
           <hr>
 
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
@@ -77,8 +77,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>{{$user-> place_worked}} /frontend web design</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{$user-> year_started_working}} - {{$user-> year_ended_working}}</h6>
+          <h5 class="w3-opacity"><b>{{$profileBrief-> place_worked}} /frontend web design</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{$profileBrief-> year_started_working}} - {{$profileBrief-> year_ended_working}}</h6>
           <hr>
         </div>
         <div class="w3-container">
@@ -94,12 +94,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
       <div class="w3-container w3-card w3-white">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+         
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>skill-sets Database.com</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
+          <h5 class="w3-opacity"><b>name}} from obtained</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>year</h6>
           <p>Web Development! All I need to know in one place</p>
           <hr>
         </div>
+          
+        
         <div class="w3-container">
           <h5 class="w3-opacity"><b>London Business School</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>

@@ -26,6 +26,7 @@ class CreateAdeptsTable extends Migration
             $table->string('city');
             $table->string('email')->unique;
             $table->date('date_of_birth');
+            $table->integer('rank_points')->nullable();
             $table->integer('user_id')->unique;
             $table->timestamps();
         });

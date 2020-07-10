@@ -17,15 +17,15 @@
                 @if(isset($details))
                         @foreach($details as $profileBrief)
                             <tr>
-                            <th scope="row">{{$profileBrief->id }}</th>
+                            <td scope="row">{{$profileBrief->id }}</td>
                             <td>{{$profileBrief->first_name }}</td>
-                            <td>{{$profileBrief->email }}</td>
+                            <td>{{$profileBrief->first_name }}</td>
                             <td>{{$profileBrief->Phone }}</td>
-                            <td><a href="{{route('moreUserDetails',$profileBrief->id }}" class="btn btn-primary" >More DetaILS</a></td>
+                            <td><a href="{{route('moreUserDetails',$profileBrief->id)}}" class="btn btn-primary">More Details</a></td>
                             </tr>
                         @endforeach
                 @else
-                    <h1 class="mt-5">No Pending stakeholders to Approve!!!</h1>
+                    <h1 class="mt-5">No skill holders to view!!!</h1>
                 @endif
                 </tbody>
                 </table>

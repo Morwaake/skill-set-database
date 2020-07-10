@@ -20,6 +20,7 @@ class AdeptController extends Controller
                         ->where('user_id', Auth::id())
                         ->select('adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
+            
 
                         $numberOfProgramming = DB::table('courses')
                         ->where('status', 1)
@@ -74,6 +75,15 @@ class AdeptController extends Controller
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
+                    ////////////////////////////
+                    $adept = Adept::where('user_id', Auth::id())->first();
+                    $adept->rank_points=$overalPoints;
+                    $adept->save();
+                    ///////////////////////////////
+
+                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
+                    dd($usersPosition);
+
                     $values = [
                         'Programming'=>$programmingV,
                         'Database'=>$databaseV,
@@ -159,7 +169,22 @@ class AdeptController extends Controller
                         ->select('adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
 
-        return view('Adept.viewProfile') ->withDetails($profileBrief);
+        $allCourses = DB::table('courses')
+                        ->where('user_id', Auth::id())
+                        ->where('status', 1)
+                        ->select('courses.name AS c_name','courses.category','courses.year','courses.obtained')
+                        ->get();
+                        
+                        $data =[
+                            'allCourses'=>$allCourses,
+                            'profileBrief'=> $profileBrief,
+                            
+        
+                        ];
+                        
+
+
+        return view('Adept.viewProfile') ->withDetails($profileBrief)->with($data);
     }
     //
     
@@ -189,6 +214,7 @@ class AdeptController extends Controller
         $adept->city = $request->city;
         $adept->date_of_birth = $request->dob;
         $adept->email = $request->email;
+        $adept ->rank_points=0;
         $adept->save();
 
 

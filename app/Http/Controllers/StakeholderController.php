@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Adept;
+use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use DB;
@@ -10,24 +12,27 @@ use Auth;
 class StakeholderController extends Controller
 {
     //
+    public function profileDetails(){
+        $profile= DB::table('stakeholders')
+                        ->where('user_id', Auth::id())
+                        ->select('stakeholders.s_name','stakeholders.email', 'stakeholders.number','stakeholders.address','stakeholders.city','stakeholders.location')
+                        ->get();
+                        
+        return view('Stakeholder.profile')->withDetails($profile);
+    }
+
+
     public function viewallskillholders(){
         $profileBrief= DB::table('adepts')
                         ->select('adepts.id','adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
-
         return view('Stakeholder.allSkillsHolders')->withDetails($profileBrief);
     }
     public function moreDetails($id){
-        $user = User::find($id)
-                ->join('adepts','users.id','=','adepts.user_id')
-                ->join('courses','users.id','=','courses.user_id')
-                ->join('skills','users.id','=','skills.user_id')
-                ->where('status',1)
-                ->select('adepts.id','adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working',
-                'adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth','courses.id', 'courses.name', 'courses.category','courses.level','courses.obtained',
-                    'courses.year')
-                    ->get();
-        return view('Stakeholder.moredetails')->withDetails($user);
+        $profileBrief = Adept::find($id)->get();
+
+
+        return view('Stakeholder.moredetails')->withDetails($profileBrief);
 
     }
     public function index(){
@@ -78,7 +83,7 @@ class StakeholderController extends Controller
                             ->where('Category','Programming')
                             ->count();
 
-                        $numberOfDatabse = DB::table('courses')
+                        $numberOfDatabase = DB::table('courses')
                         ->where('status', 1)
                         ->where('Category','Database')
                         ->count();
@@ -107,20 +112,28 @@ class StakeholderController extends Controller
                         ->where('Category','Application_Development')
                         ->count();
 
-                    $maximumPoints = 0;
-                    $maximumColumn = "";
 
                     //retriving points for individual skill category
                     $programmingV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Programming')->value('points');
                     $databaseV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Database')->value('points');
                     $cybersecurityV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Cybersecurity')->value('points');
                     $aiV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','AI_and_machine_learning')->value('points');
+                   
                     $networksV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Networks')->value('points');
                     $dataAnalysisV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Data_Analysis')->value('points');
                     $appDevelopmentV = DB::table('skills')->select('points')->where('user_id', Auth::id())->where('category','Application_Development')->value('points');
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
+                    $adept = Adept::where('user_id', Auth::id())->first();
+                    $adept->rank_points=$overalPoints;
+                    $adept->save();
+                    ///////////////////////////////
+
+                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
+
+                    
+
                     $values = [
                         'Programming'=>$programmingV,
                         'Database'=>$databaseV,
@@ -135,11 +148,9 @@ class StakeholderController extends Controller
                         if($value > $maximumPoints){
                             $maximumPoints = $value;
                             $maximumColumn = $key;
+                          
                         }
-                        else{
-                        $maximumPoints = 0;
-                        $maximumColumn = "No Skill";
-                        }
+                        
                     }
 
 
@@ -150,7 +161,7 @@ class StakeholderController extends Controller
                             'overalPoints'=> $overalPoints,
                             
                             'numberOfProgramming'=>$numberOfProgramming,
-                            'numberOfDatabse'=>$numberOfDatabse,
+                            'numberOfDatabase'=>$numberOfDatabase,
                             'numberOfNetworks'=>$numberOfNetworks,
                             'numberOfWeb'=>$numberOfWeb,
                             'numberOfAI'=>$numberOfAI,
@@ -166,7 +177,56 @@ class StakeholderController extends Controller
 
             case 2:
                 $this->redirectTo = '/stakeholder';
-                return view('Stakeholder.index');
+                $numberOfProgramming = DB::table('courses')
+                            ->where('status', 1)
+                            ->where('Category','Programming')
+                            ->count();
+
+                        $numberOfDatabase = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Database')
+                        ->count();
+                        $numberOfNetworks = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Networks')
+                        ->count();
+                        $numberOfWeb = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Web_Design')
+                        ->count();
+                        $numberOfAI = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','AI_and_machine_learning')
+                        ->count();
+                        $numberOfDataAnalysis = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Data_Analysis')
+                        ->count();
+                        $numberOfCyber = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Cybersecurity')
+                        ->count();
+                        $numberOfApp = DB::table('courses')
+                        ->where('status', 1)
+                        ->where('Category','Application_Development')
+                        ->count();
+
+                        $leaderboards =DB::table('adepts')->orderByRaw('rank_points DESC')->take(6)->get();
+
+                        $data =[
+                            'numberOfProgramming'=>$numberOfProgramming,
+                            'numberOfDatabase'=>$numberOfDatabase,
+                            'numberOfNetworks'=>$numberOfNetworks,
+                            'numberOfWeb'=>$numberOfWeb,
+                            'numberOfAI'=>$numberOfAI,
+                            'numberOfDataAnalysis'=>$numberOfDataAnalysis,
+                            'numberOfCyber'=>$numberOfCyber,
+                            'numberOfApp'=>$numberOfApp,     
+
+                        ];
+
+
+                return view('Stakeholder.index')->withDetails($leaderboards)->with($data);
                 break;
 
             case 3:
@@ -210,11 +270,11 @@ class StakeholderController extends Controller
                         ->get();
                     
     
-                    if(count($searchResults) > 0)
+                    if(count($searchResults) > 0){
                     
-                    return view('Stakeholder.searchResults')->withDetails($searchResults)->withQuery ( $name,$category,$level );
-                    else
-                        return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
+                    return view('Stakeholder.searchResults')->withDetails($searchResults)->withQuery ( $name,$category,$level );}
+                    else{
+                        return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');}
             }
             if($name === null && $category === null){
                 $searchResults = DB::table('courses')
@@ -226,7 +286,7 @@ class StakeholderController extends Controller
                         if(count($searchResults) > 0)
                         return view('Stakeholder.searchResults')->withDetails($searchResults)->withQuery ( $name,$category,$level );
                         else
-                            return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
+                            return view('Stakeholder.searchResults')->with('message','No Individuals found matching criteria. Try to search again !');
                 }
                 if($level === null && $name === null){
                     $searchResults = DB::table('courses')
@@ -241,7 +301,7 @@ class StakeholderController extends Controller
                                 return view('Stakeholder.searchResults')->with('message','No Properties found matching criteria. Try to search again !');
                     }
             else{
-                $searchResults = DB::table('ourses')
+                $searchResults = DB::table('courses')
                         ->join('adepts','courses.user_id','=','adepts.user_id')
                         ->where('level','LIKE','%'.$level.'%')
                         ->where('category','LIKE','%'.$category.'%')

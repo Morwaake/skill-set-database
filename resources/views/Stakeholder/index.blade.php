@@ -57,8 +57,8 @@
       <h2>Skill Set Database</h2>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Dashboard</a></li>
-        <li><a href="#">Add Details</a></li>
-        <li><a href="#">View Details</a></li>
+        <li><a href="{{ route('profile') }}">Add Details</a></li>
+        <li><a href="{{ route('myProfile') }}">View Details</a></li>
         <li><a href="{{ route('holders') }}">View All Skill Holder</a></li>
         <li>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -100,12 +100,13 @@
           </div>
           <div class="col-md-3">
           <select id="select" required name="level"  class="form-control form-control-dark w-100">
-                                    <option value="fundamental awarness">Fundamental Awarness</option>
-                                    <option value="limited experience">Limited Experience</option>
-                                    <option value="intermediate">Intermediate</option>
-                                    <option value="advanced"> Advanced</option>
-                                    <option value="expert"> Expert</option>
-                                  </select>
+          <option value="">choose level..</option>
+          <option value="fundamental awarness">Fundamental Awarness</option>
+          <option value="limited experience">Limited Experience</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced"> Advanced</option>
+          <option value="expert"> Expert</option>
+        </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -139,34 +140,35 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col-sm-4">
-          <div class="well">
-          
-            <p class="text-center"><h4> first_name</h4></p> 
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i> address,</p> 
-            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>Phone</p> 
-            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>email</p> 
-          </div>
-          
-        </div>
-        <div class="col-sm-8">
+      <div class="col-sm-6">
           <div class="well">
           <table class="w3-table w3-striped w3-white">
           <tr>
-            <td><i></i></td>
-            <td><h4>Skill Category</h4></td>
-            <td><i><h4>Quantity</h4></i></td>
+            <td>.</td>
+            <td><h4>LEADER BOARD</h4></td>
+            <td><i>.</td>
           </tr>
           <tr>
-            <td><i class="fa fa-database w3-text-red w3-large"></i></td>
-            <td>Database </td>
-            <td><i>39 mins</i></td>
+            <td></td>
+            <td>NAME </td>
+            <td><i>SCORE</i></td>
           </tr>
+          @if (count($details))
+            @foreach($details  as $leaderboards)
           <tr>
             <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
-            <td>Programming</td>
-            <td><i>39 mins</i></td>
+            <td>{{ $leaderboards->first_name }}</td>
+            <td><i>{{ $leaderboards->rank_points }}</i></td>
           </tr>
+          @endforeach
+          @else 
+          <tr>
+            <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
+            <td>no users</td>
+            <td><i>no users</i></td>
+          </tr>
+        @endif 
+      
           <tr>
             <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
             <td>Web Design</td>
@@ -181,6 +183,52 @@
             <td><i class="fa fa-algorithms w3-text-red w3-large"></i></td>
             <td>AI and Machine..</td>
             <td><i>39 mins</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+            <td>Application Development</td>
+            <td><i>39 mins</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+            <td>Data Analysis</td>
+            <td><i>39 mins</i></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+  <div class="col-sm-6">
+          <div class="well">
+          <table class="w3-table w3-striped w3-white">
+          <tr>
+          <td><i></i></td>
+            <td><h4>Skill Category</h4></td>
+            <td><i><h4>Quantity</h4></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-database w3-text-red w3-large"></i></td>
+            <td>Database </td>
+            <td><i>{{$numberOfDatabase}}</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
+            <td>Programming</td>
+            <td><i>{{$numberOfProgramming}}</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+            <td>Web Design</td>
+            <td><i>{{$numberOfWeb}}</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-wifi w3-text-blue w3-large"></i></td>
+            <td>Networks</td>
+            <td><i>{{$numberOfNetworks}}</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-algorithms w3-text-red w3-large"></i></td>
+            <td>AI and Machine..</td>
+            <td><i>{{$numberOfAI}}</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>

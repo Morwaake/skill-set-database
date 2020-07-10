@@ -2,14 +2,14 @@
 
 
 @section('content')
-<div class="container shadow-sm p-3 mb-5 rounded bg-light">
+<div class="container shadow-sm p-3 mb-5 mt-5 rounded bg-light">
     <div class="p-3 mb-2 bg-secondary text-white text-center"><h4>ADD PROFILE DETAILS</h4></div>
         <form method="post" action ="{{route('add_stakeholder_Profile')}}">
             @csrf
             <div>
             <div class="form-row">
         <div class="form-group col-md-6">
-        <label for="inputEmail4">Company Name *</label>
+        <label for="inputEmail4">Name (company or personal)*</label>
         <input type="text" name ="s_name"class="form-control" id="inputEmail4">
         </div>
         <div class="form-group col-md-6">
@@ -22,7 +22,7 @@
         <input type="text" name ="address" class="form-control" id="inputAddress" placeholder="1234 Main St">
     </div>
     <div class="form-group">
-        <label for="inputAddress2">location</label>
+        <label for="inputAddress2">location (ward)</label>
         <input type="text" name ="location"class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
     </div>
     <div class="form-row">
@@ -46,9 +46,8 @@
         <input type="text" name ="number"class="form-control" id="inputZip "placeholder="number">
         </div>
     </div>
-    
+                <a class="btn btn-danger  float-right" href="{{ URL::previous() }}">Back</a>
                 <button type="submit" class="btn btn-primary">Add Details</button>
-                <a class="btn btn-danger btn-sm pull-right" href="#">Back</a>
             </div>
         </form>
     </div>

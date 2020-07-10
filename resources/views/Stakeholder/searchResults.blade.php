@@ -34,7 +34,7 @@
                 </tbody>
                 </table>
                 <div class="row justify-content-center">
-                    <a href="{{route('stakeholder')}}" class="cool"><button class="but btn btn-danger">BACK</button></a>
+                    <a href="#" class="cool"><button class="but btn btn-danger">BACK</button></a>
                 </div>
             </div>
 </div>

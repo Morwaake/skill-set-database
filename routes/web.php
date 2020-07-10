@@ -39,12 +39,13 @@ Route::any('/addSkillss', 'AdeptController@addSkills')->name('addSkills');
 /**view the display of searched */
 Route::any('/searchResults', 'StakeholderController@searchBySkill')->name('results')->middleware('stakeholder');
 Route::get('/searchResult', 'StakeholderController@viewResults')->name('viewResult');
-Route::get('/allShillholders', 'StakeholderController@viewallskillholders')->name('holders');
-Route::get('/more', 'StakeholderController@moreDetails')->name('moreUserDetails');
+Route::get('/allSkillholders', 'StakeholderController@viewallskillholders')->name('holders');
+Route::get('/more/{id}', 'StakeholderController@moreDetails')->name('moreUserDetails');
 
 /**add stakeholder add profile */
 Route::get('/addProfile', 'StakeholderController@viewDetails')->name('profile')->middleware('stakeholder');
 Route::any('/add_stakeholder_Profile', 'StakeholderController@addDetails')->name('add_stakeholder_Profile');
+Route::get('/myprofile', 'StakeholderController@profileDetails')->name('myProfile');
 
 /**do to dashboard button */
 Route::get('/used_logged_in', 'StakeholderController@redirectTo')->name('goToDashboard');

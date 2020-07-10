@@ -104,7 +104,7 @@
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Sessions</h4>
+            <h4>Rank</h4>
             <p>10 Million</p> 
           </div>
         </div>
@@ -116,17 +116,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-4">
-          <div class="well">
-          @foreach($details  as $profileBrief)
-            <p class="text-center"><h4>{{$profileBrief-> first_name}}</h4></p> 
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> address}},{{$profileBrief-> city}}</p> 
-            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> Phone}}</p> 
-            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> email}}</p> 
-          </div>
-          @endforeach
-        </div>
-        <div class="col-sm-8">
+      <div class="col-sm-8">
           <div class="well">
           <table class="w3-table w3-striped w3-white">
           <tr>
@@ -137,7 +127,7 @@
           <tr>
             <td><i class="fa fa-database w3-text-red w3-large"></i></td>
             <td>Database </td>
-            <td><i>{{$numberOfDatabse}}</i></td>
+            <td><i>{{$numberOfDatabase}}</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
@@ -172,6 +162,22 @@
         </table>
     </div>
   </div>
+        <div class="col-sm-4">
+          <div class="well">
+          @if (count($details))
+            @foreach($details  as $profileBrief)
+              <p class="text-center"><h4>{{$profileBrief-> first_name}}</h4></p> 
+              <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> address}},{{$profileBrief-> city}}</p> 
+              <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> Phone}}</p> 
+              <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> email}}</p>
+              <p><i class="fa fa-date fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> date_of_birth}}</p> 
+            </div>
+            @endforeach
+          </div>
+          @else 
+                <h4 style="text-transform: lowercase;">no details</h4>
+        @endif 
+      
 </div>
 
 </body>
