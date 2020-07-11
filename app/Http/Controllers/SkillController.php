@@ -19,9 +19,9 @@ class SkillController extends Controller
         $course = new Course;
         $image = new Image;
         
-        $proof = $request->file('proof');
-        $extension = $proof->getClientOriginalExtension();
-        Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
+        //$proof = $request->file('proof');
+        //$extension = $proof->getClientOriginalExtension();
+        //Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
     
         /* Store Skill Details*/ 
         $available = Course::where('user_id',Auth::id())->get();
@@ -29,8 +29,44 @@ class SkillController extends Controller
             if( $avail->name === $request->name && $avail->category === $request->category && $avail->level===$request->level){
                 return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
         }
+
+        $validator = Validator::make($request->all(),[
+            'name.*' => 'required|string|max:50',
+            'obtatined.*'=>'required|string',
+            'year.*'=>'required',
+            'category.*'=>'required|string|max:50',
+            'level.*'=>'required|string|max:50'
+        ]);
+        if ($validator->fails()){
+            return redirect('/addSkills')->withErrors($validator)->withInput();
+        }
+        else {
+            for ($count = 0; $count < count($request->name); $count++) {
+
+                $course->user_id = Auth::id();
+                $course->name = $request->name[$count];
+                $course->obtained = $request->obtained[$count];
+                $course->year = $request->year[$count];
+                $course->category = $request->category[$count];
+                $course->level = $request->level[$count];
+                $course->status = false;
+                $course->save();
+                
+                $proof = $request->file('proof')[$count];
+                $extension = $proof->getClientOriginalExtension();
+                Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
+            
+                $image->link = $proof->getFilename().'.'.$extension;
+                $image->course_id = $course->id;
+                $image->save();
         
-        $course->user_id = Auth::id();
+                $skill ->category=$request->category[$count];
+                $skill ->points=0;
+                $skill ->user_id = Auth::id();
+                $skill->save();
+            }
+        }         
+        /*$course->user_id = Auth::id();
         $course->name = $request->name;
         $course->obtained = $request->obtained;
         $course->year = $request->year;
@@ -46,7 +82,7 @@ class SkillController extends Controller
         $skill ->category=$request->category;
         $skill ->points=0;
         $skill ->user_id = Auth::id();
-        $skill->save();
+        $skill->save();*/
                 
         $profileBrief= DB::table('adepts')
                         ->where('user_id', Auth::id())
