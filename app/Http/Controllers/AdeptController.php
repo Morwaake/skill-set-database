@@ -82,7 +82,7 @@ class AdeptController extends Controller
                     ///////////////////////////////
 
                     $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
-                    dd($usersPosition);
+                    
 
                     $values = [
                         'Programming'=>$programmingV,

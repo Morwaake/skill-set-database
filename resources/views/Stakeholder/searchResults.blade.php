@@ -2,11 +2,10 @@
 
 @section('content')
 <div class="tContainer">
-        <div class="card" style="align-content:center;">
+        <div class="card mt-4 ml-4 mr-4" style="align-content:center;">
                 <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Surname</th>
                     <th scope="col">Email</th>
@@ -19,7 +18,6 @@
                     @if(isset($details))
                         @foreach($details as $searchResults)
                             <tr>
-                            <th scope="row">{{ $searchResults->id }}</th>
                             <td>{{ $searchResults->first_name }}</td>
                             <td>{{ $searchResults->last_name }}</td>
                             <td>{{ $searchResults->email }}</td>
@@ -34,7 +32,7 @@
                 </tbody>
                 </table>
                 <div class="row justify-content-center">
-                    <a href="#" class="cool"><button class="but btn btn-danger">BACK</button></a>
+                    <a href="{{route('stakeholder')}}" class="cool"><button class="but btn btn-danger">BACK</button></a>
                 </div>
             </div>
 </div>

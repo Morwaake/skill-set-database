@@ -41,6 +41,8 @@ Route::any('/searchResults', 'StakeholderController@searchBySkill')->name('resul
 Route::get('/searchResult', 'StakeholderController@viewResults')->name('viewResult');
 Route::get('/allSkillholders', 'StakeholderController@viewallskillholders')->name('holders');
 Route::get('/more/{id}', 'StakeholderController@moreDetails')->name('moreUserDetails');
+Route::get('/edit/{id}', 'StakeholderController@showEditDetails')->name('showEditForm');
+Route::post('/edit', 'StakeholderController@editProfileDetails')->name('editFunction');
 
 /**add stakeholder add profile */
 Route::get('/addProfile', 'StakeholderController@viewDetails')->name('profile')->middleware('stakeholder');

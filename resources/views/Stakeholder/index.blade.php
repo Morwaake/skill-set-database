@@ -52,24 +52,25 @@
 </nav>
 
 <div class="container-fluid">
+@if(session()->has('message'))
+                     <div class="alert alert-danger mx-auto">
+                     {{session()->get('message')}}
+                     </div>
+                    @endif
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Skill Set Database</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
+        <li class="active"><a href="#" >{{ Auth::user()->name }}'s Dashboard</a></li>
         <li><a href="{{ route('profile') }}">Add Details</a></li>
         <li><a href="{{ route('myProfile') }}">View Details</a></li>
         <li><a href="{{ route('holders') }}">View All Skill Holder</a></li>
         <li>
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
+            <div >
+                <a  href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    Logout
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -99,7 +100,7 @@
             </select>
           </div>
           <div class="col-md-3">
-          <select id="select" required name="level"  class="form-control form-control-dark w-100">
+          <select id="select" name="level"  class="form-control form-control-dark w-100">
           <option value="">choose level..</option>
           <option value="fundamental awarness">Fundamental Awarness</option>
           <option value="limited experience">Limited Experience</option>
@@ -113,6 +114,7 @@
       </div>
       <hr>
       <div class="row">
+      <div class="text-center"><h4>RECENTLY ADDED SKILLS HOLDERS</h4></div>
         <div class="col-sm-3  ">
           <div class="well d-inline-block bg-info">
             <h4>Highest Skill: </h4>

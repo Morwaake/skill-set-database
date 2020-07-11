@@ -17,8 +17,8 @@
     <hr>
     <br>
     <div>
-    <a href="#" class="btn btn danger float-right">Back</a>
-    <a href="#" class="btn btn-primary ">Edit</a>
+    <a href="{{route('stakeholder')}}" class="btn btn danger float-right">Back</a>
+    <a href="{{route('showEditForm',$profile->id)}}" class="btn btn-primary ">Edit</a>
     </div>
     </div>
 </div>
