@@ -10,6 +10,7 @@ use DB;
 use App\Skill;
 use App\Course;
 use App\Image;
+use Illuminate\Support\Facades\Validator;
 class AdeptController extends Controller
 {
     //
@@ -76,9 +77,9 @@ class AdeptController extends Controller
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
                     ////////////////////////////
-                    $adept = Adept::where('user_id', Auth::id())->first();
-                    $adept->rank_points=$overalPoints;
-                    $adept->save();
+                    //$adept = Adept::where('user_id', Auth::id())->first();
+                    //$adept->rank_points=$overalPoints;
+                    //$adept->save();
                     ///////////////////////////////
 
                     $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
@@ -109,7 +110,7 @@ class AdeptController extends Controller
                         'overalPoints'=> $overalPoints,
                         'profileBrief'=>$profileBrief,
                         'numberOfProgramming'=>$numberOfProgramming,
-                        'numberOfDatabse'=>$numberOfDatabse,
+                        'numberOfDatabase'=>$numberOfDatabse,
                         'numberOfNetworks'=>$numberOfNetworks,
                         'numberOfWeb'=>$numberOfWeb,
                         'numberOfAI'=>$numberOfAI,
@@ -129,10 +130,7 @@ class AdeptController extends Controller
         $course = new Course;
         $image = new Image;
         $skill = new Skill;
-        $proof = $request->file('proof');
-        $extension = $proof->getClientOriginalExtension();
-        Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
-    
+        
         /* Store Skill Details*/ 
         $available = Course::where('user_id',Auth::id())->get();
         foreach($available as $avail){
@@ -140,6 +138,45 @@ class AdeptController extends Controller
                 return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
             }
         }
+
+        $validator = Validator::make($request->all(),[
+            'name.*' => 'required|string|max:50',
+            'obtatined.*'=>'required|string',
+            'year.*'=>'required',
+            'category.*'=>'required|string|max:50',
+            'level.*'=>'required|string|max:50'
+        ]);
+        if ($validator->fails()){
+            return redirect('/addSkills')->withErrors($validator)->withInput();
+        }
+        else {
+            for ($count = 0; $count < count($request->name); $count++) {
+
+                $course->user_id = Auth::id();
+                $course->name = $request->name[$count];
+                $course->obtained = $request->obtained[$count];
+                $course->year = $request->year[$count];
+                $course->category = $request->category[$count];
+                $course->level = $request->level[$count];
+                $course->status = false;
+                $course->save();
+                
+                $proof = $request->file('proof')[$count];
+                $extension = $proof->getClientOriginalExtension();
+                Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
+            
+                $image->link = $proof->getFilename().'.'.$extension;
+                $image->course_id = $course->id;
+                $image->save();
+        
+                $skill ->category=$request->category[$count];
+                $skill ->points=0;
+                $skill ->user_id = Auth::id();
+                $skill->save();
+            }
+        }
+
+        /*
         $course->user_id = Auth::id();
         $course->name = $request->name;
         $course->obtained = $request->obtained;
@@ -156,7 +193,7 @@ class AdeptController extends Controller
         $skill ->category=$request->category;
         $skill ->points=0;
         $skill ->user_id = Auth::id();
-        $skill->save();
+        $skill->save();*/
 
         return $this->index()->with('message','Susscessfully added skill');
     }
