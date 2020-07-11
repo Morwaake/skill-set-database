@@ -151,29 +151,34 @@ class AdeptController extends Controller
         }
         else {
             for ($count = 0; $count < count($request->name); $count++) {
-
-                $course->user_id = Auth::id();
-                $course->name = $request->name[$count];
-                $course->obtained = $request->obtained[$count];
-                $course->year = $request->year[$count];
-                $course->category = $request->category[$count];
-                $course->level = $request->level[$count];
-                $course->status = false;
-                $course->save();
-                
                 $proof = $request->file('proof')[$count];
                 $extension = $proof->getClientOriginalExtension();
                 Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
             
-                $image->link = $proof->getFilename().'.'.$extension;
-                $image->course_id = $course->id;
-                $image->save();
-        
-                $skill ->category=$request->category[$count];
-                $skill ->points=0;
-                $skill ->user_id = Auth::id();
-                $skill->save();
+                
+                $data = array(
+                    'user_id' => Auth::id(),
+                    'name' => $request->name[$count],
+                    'obtained' => $request->obtained[$count],
+                    'sex'=>$sex[$count],
+                    'year'=>$request->year[$count],
+                    'category'=>$request->category[$count],
+                    'level' => $request->level[$count],
+                    'link'=>$proof->getFilename().'.'.$extension,
+                    'created_at'=> Carbon::now()
+                );
+
+                $insert_data[] = $data;
+
+                $data2 = array(
+                    'category'=>$request->category[$count],
+                    'points' => 0,
+                    'user_id' => Auth::id()
+                );
+                $insert_data2[] = $data2;
             }
+            Course::insert($insert_data);
+            Skill::insert($insert_data2);
         }
 
         /*
