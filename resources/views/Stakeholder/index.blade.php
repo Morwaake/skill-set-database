@@ -115,12 +115,23 @@
       <hr>
       <div class="row">
       <div class="text-center"><h4>RECENTLY ADDED SKILLS HOLDERS</h4></div>
+      @if (count($details))
+            @foreach($details  as $recentlyApproved)
         <div class="col-sm-3  ">
           <div class="well d-inline-block bg-info">
-            <h4>Highest Skill: </h4>
-            <p>39 mins 39 mins</p> 
+            <h4>{{ $recentlyApproved->first_name }} </h4>
+            <p>{{ $recentlyApproved->category }}</p> 
           </div>
         </div>
+            @endforeach
+      @else
+          <div class="col-sm-3  ">
+          <div class="well d-inline-block bg-info">
+            <h4>no skill holder</h4>
+            <p>null</p> 
+          </div>
+        </div>
+        @endif 
         <div class="col-sm-3">
           <div class="well">
             <h4>Total Points</h4>

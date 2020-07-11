@@ -40,8 +40,9 @@ class StakeholderController extends Controller
         $recentlyApproved= DB::table('courses')
                             ->join('adepts','courses.user_id','=','adepts.user_id')
                             ->where('courses.status', 1)
-                            ->orderByRaw('updated_at DESC')
-                            ->select('adepts.first_name','course.s_name')->distinct()->take(4);
+                            ->orderByRaw('courses.updated_at DESC')
+                            ->select('adepts.first_name','courses.category')->take(4)->get();
+                            
 
         $numberOfProgramming = DB::table('courses')
                             ->where('status', 1)
@@ -93,7 +94,7 @@ class StakeholderController extends Controller
 
 
 
-        return view('Stakeholder.index')->withDetails($leaderboards)->with($data);
+        return view('Stakeholder.index')->withDetails($leaderboards,$recentlyApproved)->with($data);
     }
 
     public function viewDetails(){
