@@ -118,6 +118,12 @@ class StakeholderController extends Controller
                 return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
             }
         }
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|unique:adepts|string|max:50',
+        ]);
+        if ($validator->fails()){
+            return redirect('/adept')->with('message','details successfully added !!!!');
+        }
         
         /* Store Adept Details*/
         $stakeholder->user_id =Auth::id();

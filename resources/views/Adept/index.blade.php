@@ -32,6 +32,12 @@
 
 <nav class="navbar navbar-inverse visible-xs">
   <div class="container-fluid">
+  
+  @if(session()->has('message'))
+                     <div class="alert alert-danger mx-auto">
+                     {{session()->get('message')}}
+                     </div>
+                    @endif
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>

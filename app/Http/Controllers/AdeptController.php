@@ -239,6 +239,19 @@ class AdeptController extends Controller
         $adept = new Adept();
         $skill = new Skill();
         /* Store Adept Details*/
+        $available = Adept::where('user_id',Auth::id())->get();
+        foreach($available as $avail){
+            if( $avail->first_name === $request->first_name && $avail->last_name === $request->last_name && $avail->email===$request->email){
+                return redirect()->back()->with('message','Skill already exist, You cannot duplicate a skill');
+            }
+        }
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|unique:adepts|string|max:50',
+        ]);
+        if ($validator->fails()){
+            return redirect('/adept')->withErrors($validator)->withInput();
+        }
+
         $adept->user_id =Auth::id();
         $adept->first_name = $request->firstname;
         $adept->last_name = $request->lastName;
@@ -257,6 +270,6 @@ class AdeptController extends Controller
 
 
 
-        return view("welcome");
+        return redirect('/adept')->with('message','details successfully added !!!!');
      }
 }
