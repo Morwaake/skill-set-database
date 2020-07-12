@@ -14,26 +14,66 @@ class StakeholderController extends Controller
 {
     //
     public function profileDetails(){
+        $stakeholder = Stakeholder::where('user_id', '=',  Auth::id())->first();
+        if ($stakeholder === null) {
+            return redirect()->back()->with('message','add details first');
+        }else{
         $profile= DB::table('stakeholders')
                         ->where('user_id', Auth::id())
                         ->select('stakeholders.id','stakeholders.s_name','stakeholders.email', 'stakeholders.number','stakeholders.address','stakeholders.city','stakeholders.location')->paginate(5)
-                        ->get();
+                        ->first();
+                        $data =[
+                            'profile'=>$profile,
+                        ];
+
                         
-        return view('Stakeholder.profile')->withDetails($profile);
+        return view('Stakeholder.profile')->with($data);}
+
     }
 
 
     public function viewallskillholders(){
+        $stakeholder = Stakeholder::where('user_id', '=',  Auth::id())->first();
+        if ($stakeholder === null) {
+            return redirect()->back()->with('message','add details first');
+        }else{
         $profileBrief= DB::table('adepts')
-                        ->select('adepts.id','adepts.first_name','adepts.last_name', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->select('adepts.id','adepts.first_name','adepts.last_name','adepts.rank_points', 'adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
         return view('Stakeholder.allSkillsHolders')->withDetails($profileBrief);
+        }
     }
     public function moreDetails($id){
-        $profileBrief = Adept::find($id)->get();
+        
+        $profileBrief= DB::table('adepts')
+                        ->where('id', $id)
+                        ->select('adepts.first_name','adepts.last_name', 'adepts.rank_points','adepts.Phone','adepts.place_worked','adepts.languages','adepts.year_started_working','adepts.year_ended_working', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
+                        ->get();
+                        
+
+        $allCourses = DB::table('courses')
+                        ->join('adepts','courses.user_id','=','adepts.user_id')
+                        ->where('adepts.id',$id)
+                        ->where('status', 1)
+                        ->select('courses.name','courses.category','courses.year','courses.obtained')
+                        ->get();
+                        
+
+        $topSkills =  DB::table('courses')->where('status', 1)->select('category', DB::raw('COUNT(category) AS occurrences'))
+                    ->groupBy('category')
+                    ->orderBy('occurrences', 'DESC')
+                    ->limit(4)
+                    ->get();                        
+                        $data =[
+                            'allCourses'=>$allCourses,
+                            'profileBrief'=> $profileBrief,
+                            'topSkills'=> $topSkills,
+                            
+        
+                        ];
 
 
-        return view('Stakeholder.moredetails')->withDetails($profileBrief);
+        return view('Stakeholder.moredetails')->with($data);
 
     }
     public function index(){
@@ -88,13 +128,15 @@ class StakeholderController extends Controller
                             'numberOfAI'=>$numberOfAI,
                             'numberOfDataAnalysis'=>$numberOfDataAnalysis,
                             'numberOfCyber'=>$numberOfCyber,
-                            'numberOfApp'=>$numberOfApp,     
+                            'numberOfApp'=>$numberOfApp,
+                            'recentlyApproved'=>$recentlyApproved,
+                            'leaderboards'=>$leaderboards,     
 
                         ];
 
 
 
-        return view('Stakeholder.index')->withDetails($leaderboards,$recentlyApproved)->with($data);
+        return view('Stakeholder.index')->with($data);
     }
 
     public function viewDetails(){
@@ -136,7 +178,7 @@ class StakeholderController extends Controller
         $stakeholder->status = false;
         $stakeholder->save();
         
-        return redirect('/stakeholder')->with('message','details successfully added !!!!');
+        return redirect('/stakeholder')->with('message1','details successfully added !!!!');
     }
 
     public function showEditDetails($id)
@@ -155,12 +197,15 @@ class StakeholderController extends Controller
         $stakeholder->number = $request->number;
         $stakeholder->save();
 
-        return redirect('/stakeholder')->with('message','details successfully updated !!!!');
+        return redirect('/stakeholder')->with('message1','details successfully updated !!!!');
     }
 
 
 
     public function redirectTo(){
+        if ($role === null) {
+            return redirect('/login');
+        }else{
         switch (Auth::user()->role) {
             case 1:
                 $this->redirectTo = '/adept';
@@ -289,6 +334,7 @@ class StakeholderController extends Controller
                 $this->redirectTo = '/login';
                 return $this->redirectTo;
                 break;
+            }
         }
     }
 

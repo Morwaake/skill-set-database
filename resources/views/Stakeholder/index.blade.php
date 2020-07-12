@@ -53,10 +53,15 @@
 
 <div class="container-fluid">
 @if(session()->has('message'))
-                     <div class="alert alert-danger mx-auto">
+                     <div class="alert alert-danger mx-auto mt-3 text-center">
                      {{session()->get('message')}}
                      </div>
                     @endif
+    @if(session()->has('message1'))
+      <div class="alert alert-primary mx-auto mt-3 text-center">
+      {{session()->get('message')}}
+      </div>
+    @endif
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Skill Set Database</h2>
@@ -115,8 +120,7 @@
       <hr>
       <div class="row">
       <div class="text-center"><h4>RECENTLY ADDED SKILLS HOLDERS</h4></div>
-      @if (count($details))
-            @foreach($details  as $recentlyApproved)
+            @foreach($recentlyApproved  as $recentlyApproved)
         <div class="col-sm-3  ">
           <div class="well d-inline-block bg-info">
             <h4>{{ $recentlyApproved->first_name }} </h4>
@@ -124,14 +128,6 @@
           </div>
         </div>
             @endforeach
-      @else
-          <div class="col-sm-3  ">
-          <div class="well d-inline-block bg-info">
-            <h4>no skill holder</h4>
-            <p>null</p> 
-          </div>
-        </div>
-        @endif 
         <div class="col-sm-3">
           <div class="well">
             <h4>Total Points</h4>
@@ -142,12 +138,6 @@
           <div class="well">
             <h4>Sessions</h4>
             <p>10 Million</p> 
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p> 
           </div>
         </div>
       </div>
@@ -166,46 +156,37 @@
             <td>NAME </td>
             <td><i>SCORE</i></td>
           </tr>
-          @if (count($details))
-            @foreach($details  as $leaderboards)
+            @foreach($leaderboards  as $leaderboards)
           <tr>
-            <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
+            <td></td>
             <td>{{ $leaderboards->first_name }}</td>
             <td><i>{{ $leaderboards->rank_points }}</i></td>
           </tr>
           @endforeach
-          @else 
           <tr>
-            <td><i class="fa fa-desktop w3-text-yellow w3-large"></i></td>
-            <td>no users</td>
-            <td><i>no users</i></td>
-          </tr>
-        @endif 
-      
-          <tr>
-            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-            <td>Web Design</td>
-            <td><i>39 mins</i></td>
+            <td></td>
+            <td>Kealeboga</td>
+            <td><i>3</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-wifi w3-text-blue w3-large"></i></td>
-            <td>Networks</td>
-            <td><i>39 mins</i></td>
+            <td></i></td>
+            <td>Bob</td>
+            <td><i>392</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-algorithms w3-text-red w3-large"></i></td>
-            <td>AI and Machine..</td>
-            <td><i>39 mins</i></td>
+            <td></i></td>
+            <td>Mkay</td>
+            <td><i>9</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-            <td>Application Development</td>
-            <td><i>39 mins</i></td>
+            <td></td>
+            <td>Pantsi</td>
+            <td><i>39 </i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-            <td>Data Analysis</td>
-            <td><i>39 mins</i></td>
+            <td></i></td>
+            <td>Amos</td>
+            <td><i>3</i></td>
           </tr>
         </table>
     </div>

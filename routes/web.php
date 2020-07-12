@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/logins', 'LoginController@redirectTologin')->name('login');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,6 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add_Profile_Details', 'AdeptController@addDetailsForm')->name('addAdeptDetailsForm');
 Route::post('/addProfiles', 'AdeptController@addDetails')->name('addProfileDetails');
 Route::get('/viewProfiles', 'AdeptController@viewProfile')->name('viewSkillholder');
+Route::get('/edits/{id}', 'AdeptController@showEditDetails')->name('showEditForms');
+Route::post('/edits', 'AdeptController@editProfileDetails')->name('editFunctions');
 
 
 

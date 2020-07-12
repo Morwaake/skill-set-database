@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('obtained');
             $table->date('year');
             $table->boolean('status');
+            $table->text('link');
             $table->Integer('user_id');
             $table->timestamps();
         });

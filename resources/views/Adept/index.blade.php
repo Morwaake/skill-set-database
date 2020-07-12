@@ -66,6 +66,7 @@
         <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
+        <li><a href="#">Edit Details</a></li>
         <li>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -96,31 +97,25 @@
               <a class="btn btn-primary btn-sm ml-1" href="#">Search</a>
       </div>
       <div class="row">
-        <div class="col-sm-3  ">
+        <div class="col-sm-4  ">
           <div class="well d-inline-block bg-info">
             <h4>Highest Skill: </h4>
             <p>{{$maximumColumn}} ({{$maximumPoints}})</p> 
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="well">
             <h4>Total Points</h4>
             <p>{{$overalPoints}}</p> 
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="well">
             <h4>Rank</h4>
             <p>10 Million</p> 
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p> 
-          </div>
         </div>
-      </div>
       <div class="row">
       <div class="col-sm-8">
           <div class="well">
@@ -170,13 +165,14 @@
   </div>
         <div class="col-sm-4">
           <div class="well">
+            <div><h5>Brief Details</h5></div>
           @if (count($details))
             @foreach($details  as $profileBrief)
               <p class="text-center"><h4>{{$profileBrief-> first_name}}</h4></p> 
               <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> address}},{{$profileBrief-> city}}</p> 
               <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> Phone}}</p> 
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> email}}</p>
-              <p><i class="fa fa-date fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> date_of_birth}}</p> 
+          
             </div>
             @endforeach
           </div>

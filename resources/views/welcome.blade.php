@@ -73,8 +73,7 @@
         <div class="col-lg-12 text-center">
             <h1>Skill-Sets Database</h1>
             <h3>Get Your Skills Out There </h3>
-
-            <a href="{{ route('goToDashboard') }}"><button class="custom-button">GO TO DASHBOARD</button></a>
+            <a href="{{ route('login') }}"><button class="custom-button">START</button></a>
         </div>
     </div>
 

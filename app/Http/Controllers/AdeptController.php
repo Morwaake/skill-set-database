@@ -5,6 +5,8 @@ use App\Adept;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+
+use Carbon\Carbon;
 use Auth;
 use DB;
 use App\Skill;
@@ -76,11 +78,11 @@ class AdeptController extends Controller
 
                     $overalPoints= $programmingV + $networksV + $dataAnalysisV + $cybersecurityV + $appDevelopmentV + $aiV + $dataAnalysisV + $databaseV;
                     
-                    ////////////////////////////
-                    //$adept = Adept::where('user_id', Auth::id())->first();
-                    //$adept->rank_points=$overalPoints;
-                    //$adept->save();
-                    ///////////////////////////////
+                    
+                    $adept = Adept::where('user_id', Auth::id())->first();
+                    $adept->rank_points=$overalPoints;
+                    $adept->save();
+                    
 
                     $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
                     
@@ -160,7 +162,7 @@ class AdeptController extends Controller
                     'user_id' => Auth::id(),
                     'name' => $request->name[$count],
                     'obtained' => $request->obtained[$count],
-                    'sex'=>$sex[$count],
+                    'status' => false,
                     'year'=>$request->year[$count],
                     'category'=>$request->category[$count],
                     'level' => $request->level[$count],
@@ -214,19 +216,27 @@ class AdeptController extends Controller
         $allCourses = DB::table('courses')
                         ->where('user_id', Auth::id())
                         ->where('status', 1)
-                        ->select('courses.name AS c_name','courses.category','courses.year','courses.obtained')
+                        ->select('courses.name','courses.category','courses.year','courses.obtained')
                         ->get();
+
+        $topSkills =  DB::table('courses')->where('status', 1)->select('category', DB::raw('COUNT(category) AS occurrences'))
+                    ->groupBy('category')
+                    ->orderBy('occurrences', 'DESC')
+                    ->limit(4)
+                    ->get();
+
                         
                         $data =[
                             'allCourses'=>$allCourses,
                             'profileBrief'=> $profileBrief,
+                            'topSkills'=> $topSkills,
                             
         
                         ];
                         
 
 
-        return view('Adept.viewProfile') ->withDetails($profileBrief)->with($data);
+        return view('Adept.viewProfile')->with($data);
     }
     //
     
@@ -238,6 +248,34 @@ class AdeptController extends Controller
     {
         return view('Adept.addDetails');
     }
+
+
+
+    public function showEditDetails($id)
+    {
+        $adept = Adept::find($id);
+        return view('Adept.editProfile', ['adept' => $adept]);
+    }
+    public function editProfileDetails(Request $request)
+    {
+        $adept = Adept::find($request->id);
+        $adept->first_name = $request->firstname;
+        $adept->last_name = $request->lastName;
+        $adept->place_worked = $request->place_worked;
+        $adept->year_started_working = $request->year_started_working;
+        $adept->year_ended_working = $request->year_ended_working;
+        $adept->languages = $request->languages;
+        $adept->Phone = $request->phoneNumber;
+        $adept->address = $request->address;
+        $adept->city = $request->city;
+        $adept->date_of_birth = $request->dob;
+        $adept->email = $request->email;
+
+        return redirect('/stakeholder')->with('message','details successfully updated !!!!');
+    }
+
+
+
     public function addDetails(Request $request)
      {
         

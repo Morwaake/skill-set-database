@@ -50,15 +50,15 @@ class SkillController extends Controller
                 $course->category = $request->category[$count];
                 $course->level = $request->level[$count];
                 $course->status = false;
-                $course->save();
+                
                 
                 $proof = $request->file('proof')[$count];
                 $extension = $proof->getClientOriginalExtension();
                 Storage::disk('public')->put($proof->getFilename().'.'.$extension,  File::get($proof));
             
-                $image->link = $proof->getFilename().'.'.$extension;
-                $image->course_id = $course->id;
-                $image->save();
+                $course->link = $proof->getFilename().'.'.$extension;
+                $course->course_id = $course->id;
+                $course->save();
         
                 $skill ->category=$request->category[$count];
                 $skill ->points=0;
