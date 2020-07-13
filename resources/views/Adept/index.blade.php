@@ -19,7 +19,11 @@
     /* Set gray background color and 100% height */
     .sidenav {
       background-color: #f1f1f1;
-      height: 100%;
+      height: 125%;
+    }
+
+    body{
+      background-color : grey;
     }
         
     /* On small screens, set height to 'auto' for the grid */
