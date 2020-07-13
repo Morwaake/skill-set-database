@@ -54,10 +54,7 @@ class LoginController extends Controller
     }
 
 
-    protected function redirectTologin()
-{
-    return route('login');
-}
+   
     /**
      * Create a new controller instance.
      *
