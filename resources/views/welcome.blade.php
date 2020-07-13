@@ -69,14 +69,27 @@
             {{ session()->get('message') }}
         </div>
     @endif
-    <div class="hero">
-        <div class="col-lg-12 text-center">
-            <h1>Skill-Sets Database</h1>
-            <h3>Get Your Skills Out There </h3>
-            <a href="{{ route('login') }}"><button class="custom-button">START</button></a>
-        </div>
-    </div>
-
+    @if (Route::has('login'))
+            <div class="top-right links">
+                @if (Auth::check())
+                <div class="hero">
+                    <div class="col-lg-12 text-center">
+                        <h1>Skill-Sets Database</h1>
+                        <h3>Get Your Skills Out There </h3>
+                        <a href="{{ route('goToDashboard') }}"><button class="custom-button">START</button></a>
+                    </div>
+                </div>
+                @else
+                <div class="hero">
+                    <div class="col-lg-12 text-center">
+                        <h1>Skill-Sets Database</h1>
+                        <h3>Get Your Skills Out There </h3>
+                        <a href="{{ route('login') }}"><button class="custom-button">START</button></a>
+                    </div>
+                </div>
+                @endif
+            </div>
+        @endif
     <footer>
         <div>
             <h5>Contact Us</h5>

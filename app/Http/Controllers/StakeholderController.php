@@ -203,9 +203,7 @@ class StakeholderController extends Controller
 
 
     public function redirectTo(){
-        if ($role === null) {
-            return redirect('/login');
-        }else{
+        
         switch (Auth::user()->role) {
             case 1:
                 $this->redirectTo = '/adept';
@@ -269,6 +267,7 @@ class StakeholderController extends Controller
                     $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
 
                     
+                    $maximumPoints =  $maximumColumn = 0;
 
                     $values = [
                         'Programming'=>$programmingV,
@@ -335,7 +334,7 @@ class StakeholderController extends Controller
                 return $this->redirectTo;
                 break;
             }
-        }
+        
     }
 
     public function searchBySkill(Request $request){

@@ -84,7 +84,8 @@ class AdeptController extends Controller
                     $adept->save();
                     
 
-                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
+                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())
+                                                        ->where('rank_points', '>=',$overalPoints)->count();
                     
 
                     $values = [
@@ -119,6 +120,7 @@ class AdeptController extends Controller
                         'numberOfDataAnalysis'=>$numberOfDataAnalysis,
                         'numberOfCyber'=>$numberOfCyber,
                         'numberOfApp'=>$numberOfApp,
+                        'usersPosition'=>$usersPosition,
     
                     ];
         
