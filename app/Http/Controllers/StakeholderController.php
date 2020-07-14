@@ -211,6 +211,7 @@ class StakeholderController extends Controller
                         ->where('user_id', Auth::id())
                         ->select('adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
                         ->get();
+                        
 
                         $numberOfProgramming = DB::table('courses')
                             ->where('status', 1)
@@ -264,7 +265,8 @@ class StakeholderController extends Controller
                     $adept->save();
                     ///////////////////////////////
 
-                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')->where('user_id', Auth::id())->get();
+                    $usersPosition =DB::table('adepts')->orderByRaw('rank_points DESC')
+                                                        ->where('rank_points', '>=',$overalPoints)->count();
 
                     
                     $maximumPoints =  $maximumColumn = 0;
@@ -302,7 +304,8 @@ class StakeholderController extends Controller
                             'numberOfAI'=>$numberOfAI,
                             'numberOfDataAnalysis'=>$numberOfDataAnalysis,
                             'numberOfCyber'=>$numberOfCyber,
-                            'numberOfApp'=>$numberOfApp,     
+                            'numberOfApp'=>$numberOfApp,
+                            'usersPosition'=>$usersPosition,   
 
                         ];
 

@@ -19,9 +19,12 @@
     /* Set gray background color and 100% height */
     .sidenav {
       background-color: #f1f1f1;
-      height: 100%;
+      height: 125%;
     }
-        
+
+    body{
+      background-color : grey;
+    }  
     /* On small screens, set height to 'auto' for the grid */
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
@@ -119,6 +122,7 @@
       </div>
       <hr>
       <div class="row">
+      
       <div class="text-center"><h4>RECENTLY ADDED SKILLS HOLDERS</h4></div>
             @foreach($recentlyApproved  as $recentlyApproved)
         <div class="col-sm-3  ">
@@ -128,16 +132,16 @@
           </div>
         </div>
             @endforeach
-        <div class="col-sm-3">
+            <div class="col-sm-3">
           <div class="well">
-            <h4>Total Points</h4>
-            <p>39 mins</p> 
+            <h4>Kealeboga</h4>
+            <p>Web Design</p> 
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Sessions</h4>
-            <p>10 Million</p> 
+            <h4>Jacob</h4>
+            <p>Cyber Security</p> 
           </div>
         </div>
       </div>
@@ -166,12 +170,12 @@
           <tr>
             <td></td>
             <td>Kealeboga</td>
-            <td><i>3</i></td>
+            <td><i>10</i></td>
           </tr>
           <tr>
             <td></i></td>
             <td>Bob</td>
-            <td><i>392</i></td>
+            <td><i>9</i></td>
           </tr>
           <tr>
             <td></i></td>
@@ -181,7 +185,7 @@
           <tr>
             <td></td>
             <td>Pantsi</td>
-            <td><i>39 </i></td>
+            <td><i>5 </i></td>
           </tr>
           <tr>
             <td></i></td>

@@ -38,7 +38,7 @@
   <div class="container-fluid">
   
   @if(session()->has('message'))
-                     <div class="alert alert-danger mx-auto">
+                     <div class="alert alert-danger mx-auto mt-3 text-center">
                      {{session()->get('message')}}
                      </div>
                     @endif
@@ -48,12 +48,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Skill Set Database</a>
+      <a class="navbar-brand" href="#"><i class="fa fa-database" aria-hidden="true"></i>Skill Set Database</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Dashboard</a></li>
-        <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
+        <li><a href="{{route('addAdeptDetailsForm')}}"> Add Details</a></li>
         <li><a href="{{route('addSkill')}}">Add Course</a></li>
         <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
       </ul>
@@ -64,13 +64,13 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <h2>Skill Set Database</h2>
+      <h2><i class="fa fa-database mr-1" aria-hidden="true"></i>Skill Set Database</h2>
       <ul class="nav nav-pills nav-stacked">
         <li ><a href="#section1">Dashboard</a></li>
-        <li><a href="{{route('addAdeptDetailsForm')}}">Add Details</a></li>
-        <li><a href="{{route('addSkill')}}">Add Course</a></li>
-        <li><a href="{{route('viewSkillholder')}}">View Details</a></li>
-        <li><a href="#">Edit Details</a></li>
+        <li><a href="{{route('addAdeptDetailsForm')}}"><i class="fa fa-plus" aria-hidden="true"></i>...Add Details</a></li>
+        <li><a href="{{route('addSkill')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>..Add Course</a></li>
+        <li><a href="{{route('viewSkillholder')}}"><i class="fa fa-eye" aria-hidden="true"></i>..View Details</a></li>
+        <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>..Edit Details</a></li>
         <li>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -96,9 +96,12 @@
       <div class="well">
         <h4>Search your skills</h4>
         <div class="col-md-8">
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Enter skill... " aria-label="search">
+        <form action="{{route('course')}}" method="post">
+        @csrf
+            <input class="form-control form-control-dark w-100" type="text" name="category" placeholder="search for courses either by category... " aria-label="search">
           </div>
-              <a class="btn btn-primary btn-sm ml-1" href="#">Search</a>
+          <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
       </div>
       <div class="row">
         <div class="col-sm-4  ">
@@ -116,7 +119,7 @@
         <div class="col-sm-4">
           <div class="well">
             <h4>Rank</h4>
-            <p>10 Million</p> 
+            <p>Your at position :{{$usersPosition}}</p> 
           </div>
         </div>
         </div>
@@ -172,7 +175,7 @@
             <div><h5>Brief Details</h5></div>
           @if (count($details))
             @foreach($details  as $profileBrief)
-              <p class="text-center"><h4>{{$profileBrief-> first_name}}</h4></p> 
+              <p ><i class="fa fa-user fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> first_name}}</p> 
               <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> address}},{{$profileBrief-> city}}</p> 
               <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> Phone}}</p> 
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{$profileBrief-> email}}</p>

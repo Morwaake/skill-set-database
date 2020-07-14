@@ -20,8 +20,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-
+/**live search routes */
+Route::get('/live_search', 'LiveSearch@index');
+Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
 
 /**add adept profile details */
 Route::get('/add_Profile_Details', 'AdeptController@addDetailsForm')->name('addAdeptDetailsForm');
@@ -29,6 +30,7 @@ Route::post('/addProfiles', 'AdeptController@addDetails')->name('addProfileDetai
 Route::get('/viewProfiles', 'AdeptController@viewProfile')->name('viewSkillholder');
 Route::get('/edits/{id}', 'AdeptController@showEditDetails')->name('showEditForms');
 Route::post('/edits', 'AdeptController@editProfileDetails')->name('editFunctions');
+Route::post('/CourseSearch', 'AdeptController@search')->name('course');
 
 
 

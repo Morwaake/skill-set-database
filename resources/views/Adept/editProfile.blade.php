@@ -7,13 +7,14 @@
     <form method="post" action ="{{route('editFunctions')}}">
     @csrf
     <div class="form-row">
+    foreach{{$adept as $adept}}
         <div class="form-group col-md-6 ">
         <label for="inputEmail4">First Name *</label>
-        <input type="text" require name ="firstname"class="form-control" id="inputEmail4"value="{{$adept->firstname}}">
+        <input type="text" require name ="firstname"class="form-control" id="inputEmail4"value="{{$adept->first_name}}">
         </div>
         <div class="form-group col-md-6 ">
         <label for="inputPassword4">Last Name *</label>
-        <input type="text" require name ="lastName" class="form-control" id="inputPassword4" value="{{$adept->lastname}}">
+        <input type="text" require name ="lastName" class="form-control" id="inputPassword4" value="{{$adept->last_name}}">
         </div>
     </div>
     <div class="form-row">
@@ -81,6 +82,7 @@
         </div>
     </div>
 
+    @endforeach
     <div>
     <a class="btn btn-danger  float-right" href="{{ URL::previous() }}">Back</a>
     <input type="hidden" value="{{$adept->id}}" name="id" >

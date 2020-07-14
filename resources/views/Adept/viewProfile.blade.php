@@ -74,10 +74,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
           <hr>
         </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6><br>
-        </div>
       </div>
 
       <div class="w3-container w3-card w3-white">
@@ -86,7 +82,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <div class="w3-container">
           <h5 class="w3-opacity"><b>{{$allCourses->name}} from {{$allCourses->obtained}}</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{$allCourses->year}}</h6>
-          <p>Web Development! All I need to know in one place</p>
+          <p>This is a {{$allCourses->level}} level course in {{$allCourses->category}}</p>
           <hr>
         </div>
           @endforeach
