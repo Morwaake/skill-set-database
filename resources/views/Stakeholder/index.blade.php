@@ -224,19 +224,19 @@
             <td><i>{{$numberOfNetworks}}</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-algorithms w3-text-red w3-large"></i></td>
+            <td><i class="fa fa-desktop w3-text-red w3-large"></i></td>
             <td>AI and Machine..</td>
             <td><i>{{$numberOfAI}}</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Application Development</td>
-            <td><i>39 mins</i></td>
+            <td><i>10</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
             <td>Data Analysis</td>
-            <td><i>39 mins</i></td>
+            <td><i>22</i></td>
           </tr>
         </table>
     </div>

@@ -97,7 +97,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Home</a>
+          <a class=" nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="collapse" data-target="#search">Search</a>
@@ -108,19 +108,19 @@
             </div>
           </li>
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Approve      Courses</a>
+          <a class=" nav-link" href="{{route('PendingCourse')}}">Approve      Courses</a>
           </li>
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Approve Stakeholders</a>
+          <a class=" nav-link" href="{{route('viewPendingStakeholders')}}">Approve Stakeholders</a>
           </li>
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Home</a>
+          <a class=" nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Home</a>
+          <a class=" nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-          <a class=" nav-link" href="/home">Home</a>
+          <a class=" nav-link" href="#">Home</a>
           </li>
         </ul>
       </div>

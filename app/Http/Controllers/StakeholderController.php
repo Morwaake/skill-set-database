@@ -207,6 +207,12 @@ class StakeholderController extends Controller
         switch (Auth::user()->role) {
             case 1:
                 $this->redirectTo = '/adept';
+                $adepts = Adept::where('user_id', '=',  Auth::id())->first();
+        if ($adepts === null) {
+     
+
+            return view('Adept.addDetails')->with('message','add details first');
+        }else{
                 $profileBrief= DB::table('adepts')
                         ->where('user_id', Auth::id())
                         ->select('adepts.first_name','adepts.last_name', 'adepts.Phone', 'adepts.address', 'adepts.city', 'adepts.email','adepts.date_of_birth')
@@ -311,6 +317,7 @@ class StakeholderController extends Controller
 
 
                 return view('Adept.index')->withDetails($profileBrief)->with($data);
+                    }
                 break;
 
             case 2:
