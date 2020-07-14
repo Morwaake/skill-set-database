@@ -72,11 +72,11 @@
     <div class="form-row">
         <div class="form-group ">
             <p>Languages</p>
-                <input type="checkbox" class=" ml-4" id="setswana" name="languages[]" value="Setswana">
+                <input type="checkbox" class=" ml-4" id="setswana" name="languages" value="Setswana">
                 <label for="setswana" class="ml-2"> Setswana</label>
-                <input type="checkbox" class=" ml-4"id="English" name="languages[]" value="English">
+                <input type="checkbox" class=" ml-4"id="English" name="languages" value="English">
                 <label for="english"> English</label>
-                <input type="checkbox"class=" ml-4" id="Spanish" name="languages[]" value="Spanish">
+                <input type="checkbox"class=" ml-4" id="Spanish" name="languages" value="Spanish">
                 <label for="spanish"> Spanish</label>
         </div>
     </div>
